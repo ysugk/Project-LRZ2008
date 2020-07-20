@@ -1,0 +1,190 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   16.1   Copyright 1985-2019 StataCorp LLC
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     Special Edition                  College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+Single-user Stata license expires  5 Jul 2021:
+       Serial number:  401609700731
+         Licensed to:  Yongseok Kim
+                       Indiana University Bloomington
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+. do tabulate_tab5.do 
+
+. clear all
+
+. set more off
+
+. 
+. cd "~/Projects/Replication/LRZ2008"
+/Users/apple/Projects/Replication/LRZ2008
+
+. use "analysis/input/prepared"
+
+. 
+. tsset gvkey fyear
+       panel variable:  gvkey (unbalanced)
+        time variable:  fyear, 1965 to 2003, but with gaps
+                delta:  1 unit
+
+. global control "L.logsale L.mtb L.prof L.tang L.indblev L.cfvol L.divpayer"
+
+. 
+. qui reg blev $control i.cyear, vce(cluster gvkey)
+
+. mat b1 = e(b)
+
+. mat b1 = b1[1, 1..7]
+
+. local r2_ : di %4.3f e(r2_a)
+
+. eststo est1
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.178"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. qui xtregar blev $control, fe
+
+. mat b2 = e(b)
+
+. mat b2 = b2[1, 1..7]
+
+. local rho_ : di %4.3f e(rho_ar)
+
+. eststo est2
+
+. estadd local rho_ "`rho_'"
+
+added macro:
+               e(rho_) : "0.657"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b1 = st_matrix("b1")
+
+: b2 = st_matrix("b2")
+
+: b3 = 100 :* (b2 :- b1) :/ b1
+
+: st_matrix("b3", b3)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. matrix colnames b3 = $control
+
+. 
+. ereturn post b3
+
+. eststo est3
+
+. 
+. eststo
+(est4 stored)
+
+. qui reg mlev $control i.cyear, vce(cluster gvkey)
+
+. mat b1 = e(b)
+
+. mat b1 = b1[1, 1..7]
+
+. local r2_ : di %4.3f e(r2_a)
+
+. eststo est4
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.281"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. qui xtregar blev $control, fe
+
+. mat b2 = e(b)
+
+. mat b2 = b2[1, 1..7]
+
+. local rho_ : di %4.3f e(rho_ar)
+
+. eststo est5
+
+. estadd local rho_ "`rho_'"
+
+added macro:
+               e(rho_) : "0.657"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b1 = st_matrix("b1")
+
+: b2 = st_matrix("b2")
+
+: b3 = 100 :* (b2 :- b1) :/ b1
+
+: st_matrix("b3", b3)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. matrix colnames b3 = $control
+
+. 
+. ereturn post b3
+
+. eststo est6
+
+. 
+. esttab est1 est2 est3 est4 est5 est6 using "analysis/output/tab/tab5.tex", re
+> place b(%4.3f) t(2) booktabs nomtitles nonumbers msign("$-$") nostar nonotes 
+> ///
+> stats(yearfixed r2_ rho_ N, fmt(%10.0fc) label("Year fixed effects" "Adj. $ R
+> ^2$" "AR(1)" "Obs.")) ///
+> keep($control) ///
+> coeflabel(L.logsale "Log(Sales)" L.mtb "Market-to-book" L.prof "Profitability
+> " L.tang "Tangibility" L.cfvol "Cash flow vol." L.indblev "Industry median le
+> v." L.divpayer "Dividend payer") ///
+> posthead(" & \multicolumn{3}{c}{Book Leverage} & \multicolumn{3}{c}{Market Le
+> verage} \\ \cmidrule(lr){2-4} \cmidrule(lr){5-7}" "Variable & Pooled OLS & Fi
+> rm FE & \% Change & Pooled OLS & Firm FE & \% Change \\ \midrule") ///
+> prefoot("\\")
+(output written to analysis/output/tab/tab5.tex)
+
+. 
+end of do-file

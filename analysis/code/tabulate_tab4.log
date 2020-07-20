@@ -1,0 +1,467 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   16.1   Copyright 1985-2019 StataCorp LLC
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     Special Edition                  College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+Single-user Stata license expires  5 Jul 2021:
+       Serial number:  401609700731
+         Licensed to:  Yongseok Kim
+                       Indiana University Bloomington
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+. do tabulate_tab4.do 
+
+. clear all
+
+. set more off
+
+. 
+. cd "~/Projects/Replication/LRZ2008"
+/Users/apple/Projects/Replication/LRZ2008
+
+. use "analysis/input/prepared"
+
+. tsset gvkey fyear
+       panel variable:  gvkey (unbalanced)
+        time variable:  fyear, 1965 to 2003, but with gaps
+                delta:  1 unit
+
+. 
+. qui reg logsale fyear, nocons
+
+. predict logsaler, r
+(8,050 missing values generated)
+
+. 
+. preserve
+
+. collapse (firstnm) initblev = blev, by(gvkey)
+
+. tempfile initblev
+
+. save `initblev', replace
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000002 no
+> t found)
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000002 saved
+
+. restore
+
+. 
+. preserve
+
+. collapse (firstnm) initmlev = mlev, by(gvkey)
+
+. tempfile initmlev
+
+. save `initmlev', replace
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000004 no
+> t found)
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000004 saved
+
+. restore
+
+. 
+. merge m:1 gvkey using `initblev'
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           247,054  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. 
+. merge m:1 gvkey using `initmlev'
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           247,054  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. 
+. tsset gvkey fyear
+       panel variable:  gvkey (unbalanced)
+        time variable:  fyear, 1965 to 2003, but with gaps
+                delta:  1 unit
+
+. 
+. foreach v in logsaler mtb prof tang cfvol indblev divpayer {
+  2.         forvalues j = 1/8 {
+  3.                 gen lag`j'_`v' = L`j'.`v'
+  4.         }
+  5. }
+(29,230 missing values generated)
+(49,474 missing values generated)
+(68,345 missing values generated)
+(85,699 missing values generated)
+(101,585 missing values generated)
+(115,756 missing values generated)
+(128,324 missing values generated)
+(139,788 missing values generated)
+(80,899 missing values generated)
+(96,936 missing values generated)
+(111,621 missing values generated)
+(124,961 missing values generated)
+(136,816 missing values generated)
+(147,432 missing values generated)
+(157,028 missing values generated)
+(165,736 missing values generated)
+(28,762 missing values generated)
+(49,178 missing values generated)
+(68,183 missing values generated)
+(85,696 missing values generated)
+(101,705 missing values generated)
+(115,949 missing values generated)
+(128,565 missing values generated)
+(140,080 missing values generated)
+(25,421 missing values generated)
+(46,459 missing values generated)
+(65,954 missing values generated)
+(83,875 missing values generated)
+(100,182 missing values generated)
+(114,682 missing values generated)
+(127,489 missing values generated)
+(139,196 missing values generated)
+(79,050 missing values generated)
+(95,163 missing values generated)
+(109,609 missing values generated)
+(122,448 missing values generated)
+(134,185 missing values generated)
+(144,774 missing values generated)
+(154,089 missing values generated)
+(162,459 missing values generated)
+(22,486 missing values generated)
+(43,882 missing values generated)
+(63,689 missing values generated)
+(81,870 missing values generated)
+(98,404 missing values generated)
+(113,091 missing values generated)
+(126,056 missing values generated)
+(137,883 missing values generated)
+(22,489 missing values generated)
+(43,885 missing values generated)
+(63,692 missing values generated)
+(81,871 missing values generated)
+(98,405 missing values generated)
+(113,091 missing values generated)
+(126,056 missing values generated)
+(137,883 missing values generated)
+
+. 
+. by gvkey: drop if _n == 1
+(22,076 observations deleted)
+
+. 
+. foreach v of varlist lag*_* {
+  2.         drop if missing(`v')
+  3. }
+(7,154 observations deleted)
+(21,760 observations deleted)
+(19,838 observations deleted)
+(17,989 observations deleted)
+(16,285 observations deleted)
+(14,422 observations deleted)
+(12,671 observations deleted)
+(11,460 observations deleted)
+(15,653 observations deleted)
+(2,015 observations deleted)
+(1,940 observations deleted)
+(2,079 observations deleted)
+(2,142 observations deleted)
+(2,351 observations deleted)
+(2,886 observations deleted)
+(5,744 observations deleted)
+(477 observations deleted)
+(202 observations deleted)
+(190 observations deleted)
+(177 observations deleted)
+(178 observations deleted)
+(188 observations deleted)
+(222 observations deleted)
+(275 observations deleted)
+(290 observations deleted)
+(125 observations deleted)
+(102 observations deleted)
+(96 observations deleted)
+(97 observations deleted)
+(101 observations deleted)
+(107 observations deleted)
+(110 observations deleted)
+(203 observations deleted)
+(92 observations deleted)
+(111 observations deleted)
+(133 observations deleted)
+(190 observations deleted)
+(1,537 observations deleted)
+(3,420 observations deleted)
+(3,433 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+(0 observations deleted)
+
+. 
+. foreach v of varlist initblev initmlev lag*_* {
+  2.         egen `v'_std = std(`v')
+  3. }
+
+. 
+. global control "lag*_logsaler_std lag*_mtb_std lag*_prof_std lag*_tang_std la
+> g*_indblev_std lag*_cfvol_std lag*_divpayer_std"
+
+. 
+. /* Book leverage equations */
+. 
+. qui reghdfe blev initblev_std $control, a(cyear) cl(gvkey)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b = st_matrix("b")
+
+: V = st_matrix("V")
+
+: 
+: bshort = b[1, (1, 2, 10, 18, 26, 34, 42, 50)]
+
+: Vshort = V[(1, 2, 10, 18, 26, 34, 42, 50), (1, 2, 10, 18, 26, 34, 42, 50)]
+
+: st_matrix("bshort", bshort)
+
+: st_matrix("Vshort", Vshort)
+
+: 
+: b2 = b[1, 2..57]
+
+: V2 = V[2..57, 2..57]
+
+: 
+: v1 = sum(V2[1..8, 1..8])
+
+: v2 = sum(V2[9..16, 9..16])
+
+: v3 = sum(V2[17..24, 17..24])
+
+: v4 = sum(V2[25..32, 25..32])
+
+: v5 = sum(V2[33..40, 33..40])
+
+: v6 = sum(V2[41..48, 41..48])
+
+: v7 = sum(V2[49..56, 49..56])
+
+: 
+: Vlong = diag((v1, v2, v3, v4, v5, v6 ,v7))
+
+: 
+: blong = rowshape(b2, 7)
+
+: blong = rowsum(blong)
+
+: blong = rowshape(blong, 1)
+
+: st_matrix("blong", blong)
+
+: st_matrix("Vlong", Vlong)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. mat colnames bshort = "initlev" "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof
+> _std" "lag1_tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. mat rownames Vshort = "initlev" "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof
+> _std" "lag1_tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. mat colnames Vshort = "initlev" "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof
+> _std" "lag1_tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. 
+. ereturn post bshort Vshort, obs(`nobs')
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.25"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. eststo est1
+
+. 
+. mat colnames blong = "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof_std" "lag1
+> _tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. mat rownames Vlong = "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof_std" "lag1
+> _tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. mat colnames Vlong = "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof_std" "lag1
+> _tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. 
+. ereturn post blong Vlong
+
+. eststo est2
+
+. 
+. * Market Leverage Equation
+. qui reghdfe mlev initmlev_std $control, a(cyear) cl(gvkey)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b = st_matrix("b")
+
+: V = st_matrix("V")
+
+: 
+: bshort = b[1, (1, 2, 10, 18, 26, 34, 42, 50)]
+
+: Vshort = V[(1, 2, 10, 18, 26, 34, 42, 50), (1, 2, 10, 18, 26, 34, 42, 50)]
+
+: st_matrix("bshort", bshort)
+
+: st_matrix("Vshort", Vshort)
+
+: 
+: b2 = b[1, 2..57]
+
+: V2 = V[2..57, 2..57]
+
+: 
+: v1 = sum(V2[1..8, 1..8])
+
+: v2 = sum(V2[9..16, 9..16])
+
+: v3 = sum(V2[17..24, 17..24])
+
+: v4 = sum(V2[25..32, 25..32])
+
+: v5 = sum(V2[33..40, 33..40])
+
+: v6 = sum(V2[41..48, 41..48])
+
+: v7 = sum(V2[49..56, 49..56])
+
+: 
+: Vlong = diag((v1, v2, v3, v4, v5, v6 ,v7))
+
+: 
+: blong = rowshape(b2, 7)
+
+: blong = rowsum(blong)
+
+: blong = rowshape(blong, 1)
+
+: st_matrix("blong", blong)
+
+: st_matrix("Vlong", Vlong)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. mat colnames bshort = "initlev" "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof
+> _std" "lag1_tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. mat rownames Vshort = "initlev" "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof
+> _std" "lag1_tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. mat colnames Vshort = "initlev" "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof
+> _std" "lag1_tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. 
+. ereturn post bshort Vshort, obs(`nobs')
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.38"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. eststo est3
+
+. 
+. mat colnames blong = "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof_std" "lag1
+> _tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. mat rownames Vlong = "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof_std" "lag1
+> _tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. mat colnames Vlong = "lag1_logsaler_std" "lag1_mtb_std" "lag1_prof_std" "lag1
+> _tang_std" "lag1_indblev_std" "lag1_cfvol_std" "lag1_divpayer_std"
+
+. 
+. ereturn post blong Vlong
+
+. eststo est4
+
+. 
+. esttab est1 est2 est3 est4 using "analysis/output/tab/tab4.tex", replace b(%3
+> .2f) t(%3.2f) booktabs nostar nonotes nomtitles nonumbers stats(yearfixed r2_
+>  N, fmt(%10.0fc) label("Year fixed effects" "Adj. $ R^2$" "Obs.")) msign("$-$
+> ") ///
+> keep(initlev lag1*) ///
+> order(initlev) ///
+> coeflabel(initlev "Initial leverage" lag1_logsaler_std "Log(Sales)" lag1_mtb_
+> std "Market-to-book" lag1_prof_std "Profitability" lag1_tang_std "Tangibility
+> " lag1_cfvol_std "Cash flow vol." lag1_indblev_std "Industry median lev." lag
+> 1_divpayer_std "Dividend payer") ///
+> posthead(" & \multicolumn{2}{c}{Book Leverage} & \multicolumn{2}{c}{Market Le
+> verage} \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5}" "Variable & Short Run & Lon
+> g Run & Short Run & Long Run \\ \midrule") ///
+> prefoot("\\")
+(output written to analysis/output/tab/tab4.tex)
+
+. 
+end of do-file

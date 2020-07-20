@@ -1,0 +1,748 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   16.1   Copyright 1985-2019 StataCorp LLC
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     Special Edition                  College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+Single-user Stata license expires  5 Jul 2021:
+       Serial number:  401609700731
+         Licensed to:  Yongseok Kim
+                       Indiana University Bloomington
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+. do tabulate_tab6.do 
+
+. clear all
+
+. set more off
+
+. 
+. cd "~/Projects/Replication/LRZ2008"
+/Users/apple/Projects/Replication/LRZ2008
+
+. use "analysis/input/prepared"
+
+. 
+. tsset gvkey fyear
+       panel variable:  gvkey (unbalanced)
+        time variable:  fyear, 1965 to 2003, but with gaps
+                delta:  1 unit
+
+. 
+. preserve
+
+. collapse (firstnm) initblev = blev, by(gvkey)
+
+. tempfile initblev
+
+. save `initblev', replace
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24060.000002 no
+> t found)
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24060.000002 saved
+
+. restore
+
+. 
+. preserve
+
+. collapse (firstnm) initmlev = mlev, by(gvkey)
+
+. tempfile initmlev
+
+. save `initmlev', replace
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24060.000004 no
+> t found)
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24060.000004 saved
+
+. restore
+
+. 
+. merge m:1 gvkey using `initblev'
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           247,054  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. 
+. merge m:1 gvkey using `initmlev'
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           247,054  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. 
+. tsset gvkey fyear
+       panel variable:  gvkey (unbalanced)
+        time variable:  fyear, 1965 to 2003, but with gaps
+                delta:  1 unit
+
+. global control "L.logsale L.mtb L.prof L.tang L.indblev"
+
+. 
+. foreach v in $control {
+  2.         drop if missing(`v')
+  3. }
+(29,230 observations deleted)
+(61,033 observations deleted)
+(20,429 observations deleted)
+(17,512 observations deleted)
+(14,584 observations deleted)
+
+. 
+. /***********************************
+>         Column (a)
+> ************************************/
+. 
+. qui reg D.blev L.blev, vce(cluster gvkey)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. local r2_ : di %4.3f e(r2)
+
+. local nobs = e(N)
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b = st_matrix("b")
+
+: V = st_matrix("V")
+
+: b[1, 1] = -b[1, 1]
+
+: b[1, 2] = log(0.5)/log(1 - b[1,1])
+
+: V[2,2] = V[1,1] * (log(0.5) / ((1 - b[1,1]) * log(1 - b[1,1])^2))^2
+
+: 
+: st_matrix("b", b)
+
+: st_matrix("V", V)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. mat colnames b = "SOA" "Half-life"
+
+. mat rownames V = "SOA" "Half-life"
+
+. mat colnames V = "SOA" "Half-life"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. ereturn display
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         SOA |   .1154462   .0023983    48.14   0.000     .1107457    .1201468
+   Half-life |   5.650413   .1248853    45.24   0.000     5.405642    5.895184
+------------------------------------------------------------------------------
+
+. eststo est1
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.048"
+
+. estadd local yearfixed "No"
+
+added macro:
+          e(yearfixed) : "No"
+
+. 
+. /***********************************
+>         Column (b)
+> ************************************/
+. 
+. qui reg D.blev L.blev initblev, vce(cluster gvkey)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. local r2_ : di %4.3f e(r2)
+
+. local nobs = e(N)
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b = st_matrix("b")
+
+: V = st_matrix("V")
+
+: b[1,1] = -b[1,1]
+
+: b[1,2] = b[1,2] :/ b[1,1]
+
+: b[1,3] = log(0.5)/log(1 - b[1,1])
+
+: 
+: F = (b[1,2], I(1))
+
+: V[2,2] = (F * V[1..2,1..2] * F') :/ (b[1,1]^2)
+
+: 
+: V[3,3] = V[1,1] * (log(0.5) / ((1 - b[1,1]) * log(1 - b[1,1])^2))^2
+
+: 
+: st_matrix("b", b)
+
+: st_matrix("V", V)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. mat colnames b = "SOA" "initlev" "Half-life"
+
+. mat rownames V = "SOA" "initlev" "Half-life"
+
+. mat colnames V = "SOA" "initlev" "Half-life"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. ereturn display
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         SOA |    .126756   .0026935    47.06   0.000     .1214768    .1320353
+     initlev |   .2133662   .0135774    15.71   0.000      .186755    .2399774
+   Half-life |   5.113957   .1163799    43.94   0.000     4.885857    5.342058
+------------------------------------------------------------------------------
+
+. eststo est2
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.051"
+
+. estadd local yearfixed "No"
+
+added macro:
+          e(yearfixed) : "No"
+
+. 
+. /***********************************
+>         Column (c)
+> ************************************/
+. 
+. qui reghdfe D.blev L.blev initblev $control, a(cyear) cl(gvkey)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. local r2_ : di %4.3f e(r2)
+
+. local nobs = e(N)
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b = st_matrix("b")
+
+: V = st_matrix("V")
+
+: b[1,1] = -b[1,1]
+
+: b[1,2..7] = b[1,2..7] :/ b[1,1]
+
+: 
+: F = (b[1,2..7]', I(6))
+
+: V[2..7, 2..7] = (F * V[1..7, 1..7] * F') :/ (b[1,1]^2)
+
+: 
+: b[1,8] = log(0.5)/log(1 - b[1,1])
+
+: V[8,8] = V[1,1] * (log(0.5) / ((1 - b[1,1]) * log(1 - b[1,1])^2))^2
+
+: 
+: st_matrix("b", b)
+
+: st_matrix("V", V)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. mat colnames b = "SOA" "initlev" $control "Half-life"
+
+. mat rownames V = "SOA" "initlev" $control "Half-life"
+
+. mat colnames V = "SOA" "initlev" $control "Half-life"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. ereturn display
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         SOA |   .1401576   .0030064    46.62   0.000     .1342652    .1460501
+     initlev |   .1625633   .0131373    12.37   0.000     .1368146     .188312
+             |
+     logsale |
+         L1. |   .0030608    .001305     2.35   0.019      .000503    .0056186
+             |
+         mtb |
+         L1. |  -.0125335   .0026843    -4.67   0.000    -.0177947   -.0072724
+             |
+        prof |
+         L1. |  -.2375964   .0293345    -8.10   0.000    -.2950909   -.1801019
+             |
+        tang |
+         L1. |   .1357046   .0121367    11.18   0.000     .1119171     .159492
+             |
+     indblev |
+         L1. |   .1880915   .0342901     5.49   0.000     .1208842    .2552989
+             |
+   Half-life |   4.590191   .1062832    43.19   0.000      4.38188    4.798502
+------------------------------------------------------------------------------
+
+. eststo est3
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.065"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. /***********************************
+>         Column (d)
+> ************************************/
+. 
+. qui reghdfe D.blev L.blev, a(gvkey) cl(gvkey)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. local r2_ : di %4.3f e(r2)
+
+. local nobs = e(N)
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b = st_matrix("b")
+
+: V = st_matrix("V")
+
+: b[1,1] = -b[1, 1]
+
+: b[1,2] = log(0.5)/log(1 - b[1,1])
+
+: V[2,2] = V[1,1] * (log(0.5) / ((1 - b[1,1]) * log(1 - b[1,1])^2))^2
+
+: 
+: st_matrix("b", b)
+
+: st_matrix("V", V)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. mat colnames b = "SOA" "Half-life"
+
+. mat rownames V = "SOA" "Half-life"
+
+. mat colnames V = "SOA" "Half-life"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. ereturn display
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         SOA |   .3402919    .005658    60.14   0.000     .3292024    .3513814
+   Half-life |   1.666388   .0343589    48.50   0.000     1.599046     1.73373
+------------------------------------------------------------------------------
+
+. eststo est4
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.228"
+
+. estadd local yearfixed "No"
+
+added macro:
+          e(yearfixed) : "No"
+
+. 
+. /***********************************
+>         Column (e)
+> ************************************/
+. 
+. qui reghdfe D.blev L.blev $control, a(gvkey cyear) cl(gvkey)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. local r2_ : di %4.3f e(r2)
+
+. local nobs = e(N)
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b = st_matrix("b")
+
+: V = st_matrix("V")
+
+: b[1,1] = -b[1, 1]
+
+: b[1,2..7] = b[1,2..7] :/ b[1,1]
+
+: 
+: F = (b[1,2..7]', I(6))
+
+: V[2..7, 2..7] = (F * V[1..7, 1..7] * F') :/ (b[1,1]^2)
+
+: 
+: b[1,7] = log(0.5)/log(1 - b[1,1])
+
+: V[7,7] = V[1,1] * (log(0.5) / ((1 - b[1,1]) * log(1 - b[1,1])^2))^2
+
+: 
+: st_matrix("b", b)
+
+: st_matrix("V", V)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. mat colnames b = "SOA" $control "Half-life"
+
+. mat rownames V = "SOA" $control "Half-life"
+
+. mat colnames V = "SOA" $control "Half-life"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. ereturn display
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         SOA |   .3568456   .0060375    59.10   0.000     .3450123    .3686789
+             |
+     logsale |
+         L1. |   .0158229    .002952     5.36   0.000     .0100371    .0216087
+             |
+         mtb |
+         L1. |  -.0043264    .001738    -2.49   0.013    -.0077328     -.00092
+             |
+        prof |
+         L1. |  -.1141064   .0193353    -5.90   0.000    -.1520029   -.0762098
+             |
+        tang |
+         L1. |   .0976243   .0171889     5.68   0.000     .0639347    .1313138
+             |
+     indblev |
+         L1. |   .2060897    .036404     5.66   0.000     .1347391    .2774403
+             |
+   Half-life |   1.570443   .0334012    47.02   0.000     1.504978    1.635908
+------------------------------------------------------------------------------
+
+. eststo est5
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.239"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. /***********************************
+>         Column (f)
+> ************************************/
+. qui xtdpdsys blev, lags(1)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. local nobs = e(N)
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b = st_matrix("b")
+
+: V = st_matrix("V")
+
+: b[1,1] = -(b[1,1] - 1)
+
+: 
+: b[1,2] = log(0.5)/log(1 - b[1,1])
+
+: V[2,2] = V[1,1] * (log(0.5) / ((1 - b[1,1]) * log(1 - b[1,1])^2))^2
+
+: 
+: st_matrix("b", b)
+
+: st_matrix("V", V)
+
+: st_matrix("b", b)
+
+: st_matrix("V", V)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. mat colnames b = "SOA" "Half-life"
+
+. mat rownames V = "SOA" "Half-life"
+
+. mat colnames V = "SOA" "Half-life"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. ereturn display
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         SOA |   .1988569   .0056197    35.39   0.000     .1878425    .2098714
+   Half-life |   3.126288   .0989094    31.61   0.000     2.932429    3.320147
+------------------------------------------------------------------------------
+
+. eststo est7
+
+. estadd local yearfixed "No"
+
+added macro:
+          e(yearfixed) : "No"
+
+. 
+. /***********************************
+>         Column (g)
+> ***********************************/
+. qui tabulate cyear, g(cyear)
+
+. 
+. xtabond blev $control cyear1-cyear35, lags(1)
+note: cyear1 dropped from div() because of collinearity
+note: cyear35 dropped from div() because of collinearity
+note: cyear1 dropped because of collinearity
+note: cyear2 dropped because of collinearity
+
+Arellano-Bond dynamic panel-data estimation     Number of obs     =     79,997
+Group variable: gvkey                           Number of groups  =      8,681
+Time variable: fyear
+                                                Obs per group:
+                                                              min =          1
+                                                              avg =   9.215183
+                                                              max =         32
+
+Number of instruments =    567                  Wald chi2(39)     =    8845.14
+                                                Prob > chi2       =     0.0000
+One-step results
+------------------------------------------------------------------------------
+        blev |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        blev |
+         L1. |   .8510421   .0104999    81.05   0.000     .8304626    .8716216
+             |
+     logsale |
+         L1. |  -.0113731   .0014344    -7.93   0.000    -.0141845   -.0085617
+             |
+         mtb |
+         L1. |  -.0021823   .0006212    -3.51   0.000    -.0033998   -.0009648
+             |
+        prof |
+         L1. |   .1220396   .0052478    23.26   0.000     .1117542    .1323251
+             |
+        tang |
+         L1. |  -.0891093   .0080649   -11.05   0.000    -.1049162   -.0733024
+             |
+     indblev |
+         L1. |  -.2186068   .0219707    -9.95   0.000    -.2616686    -.175545
+             |
+      cyear3 |  -.0044373   .0035355    -1.26   0.209    -.0113668    .0024922
+      cyear4 |   .0010785   .0034599     0.31   0.755    -.0057027    .0078598
+      cyear5 |   .0067064   .0034427     1.95   0.051    -.0000412    .0134539
+      cyear6 |  -.0121692   .0034461    -3.53   0.000    -.0189235    -.005415
+      cyear7 |  -.0213334   .0034522    -6.18   0.000    -.0280995   -.0145672
+      cyear8 |  -.0105641   .0035159    -3.00   0.003    -.0174551   -.0036731
+      cyear9 |  -.0068793    .003564    -1.93   0.054    -.0138645    .0001059
+     cyear10 |  -.0038243   .0036027    -1.06   0.288    -.0108854    .0032368
+     cyear11 |  -.0111298    .003636    -3.06   0.002    -.0182562   -.0040034
+     cyear12 |  -.0114672   .0037149    -3.09   0.002    -.0187483   -.0041861
+     cyear13 |  -.0064866   .0038241    -1.70   0.090    -.0139818    .0010086
+     cyear14 |  -.0233538   .0038418    -6.08   0.000    -.0308835   -.0158241
+     cyear15 |  -.0128889   .0040247    -3.20   0.001    -.0207771   -.0050007
+     cyear16 |  -.0043065   .0040849    -1.05   0.292    -.0123128    .0036998
+     cyear17 |   .0023003   .0040471     0.57   0.570    -.0056318    .0102324
+     cyear18 |   .0020445   .0040615     0.50   0.615    -.0059159    .0100048
+     cyear19 |   .0097293   .0040995     2.37   0.018     .0016945    .0177641
+     cyear20 |   .0150289   .0041345     3.64   0.000     .0069254    .0231323
+     cyear21 |     .01733   .0041583     4.17   0.000     .0091798    .0254801
+     cyear22 |    .006406    .004189     1.53   0.126    -.0018043    .0146162
+     cyear23 |  -.0034653   .0042451    -0.82   0.414    -.0117856    .0048549
+     cyear24 |  -.0089747   .0043585    -2.06   0.039    -.0175171   -.0004322
+     cyear25 |    -.00677   .0045442    -1.49   0.136    -.0156765    .0021364
+     cyear26 |   .0000949   .0046345     0.02   0.984    -.0089886    .0091784
+     cyear27 |  -.0052069   .0046558    -1.12   0.263    -.0143321    .0039183
+     cyear28 |   .0059762   .0047842     1.25   0.212    -.0034006     .015353
+     cyear29 |   .0236003   .0048359     4.88   0.000     .0141222    .0330785
+     cyear30 |   .0192805   .0048121     4.01   0.000      .009849     .028712
+     cyear31 |   .0104172   .0048789     2.14   0.033     .0008547    .0199797
+     cyear32 |   .0150516   .0050455     2.98   0.003     .0051627    .0249405
+     cyear33 |   .0099595   .0050829     1.96   0.050    -2.71e-06    .0199217
+     cyear34 |   .0030592   .0051462     0.59   0.552    -.0070272    .0131455
+     cyear35 |  -.0042946   .0072857    -0.59   0.556    -.0185743    .0099851
+       _cons |   .1781865   .0103267    17.25   0.000     .1579466    .1984264
+------------------------------------------------------------------------------
+Instruments for differenced equation
+        GMM-type: L(2/.).blev
+        Standard: LD.logsale LD.mtb LD.prof LD.tang LD.indblev D.cyear2
+                  D.cyear3 D.cyear4 D.cyear5 D.cyear6 D.cyear7 D.cyear8
+                  D.cyear9 D.cyear10 D.cyear11 D.cyear12 D.cyear13 D.cyear14
+                  D.cyear15 D.cyear16 D.cyear17 D.cyear18 D.cyear19
+                  D.cyear20 D.cyear21 D.cyear22 D.cyear23 D.cyear24
+                  D.cyear25 D.cyear26 D.cyear27 D.cyear28 D.cyear29
+                  D.cyear30 D.cyear31 D.cyear32 D.cyear33 D.cyear34
+Instruments for level equation
+        Standard: _cons
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. local nobs = e(N)
+
+. 
+. mata
+------------------------------------------------- mata (type end to exit) -----
+: b = st_matrix("b")
+
+: V = st_matrix("V")
+
+: b = b[1, (1..6, 40)]
+
+: V = V[(1..6, 40), (1..6, 40)]
+
+: 
+: b[1,1] = -(b[1,1] - 1)
+
+: b[1,2..7] = b[1,2..7] :/ b[1,1]
+
+: 
+: F = (b[1,2..7]', I(6))
+
+: V[2..7, 2..7] = (F * V[1..7, 1..7] * F') :/ (b[1,1]^2)
+
+: 
+: b[1,7] = log(0.5)/log(1 - b[1,1])
+
+: V[7,7] = V[1,1] * (log(0.5) / ((1 - b[1,1]) * log(1 - b[1,1])^2))^2
+
+: 
+: st_matrix("b", b)
+
+: st_matrix("V", V)
+
+: end
+-------------------------------------------------------------------------------
+
+. 
+. mat colnames b = "SOA" $control "Half-life"
+
+. mat rownames V = "SOA" $control "Half-life"
+
+. mat colnames V = "SOA" $control "Half-life"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. ereturn display
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         SOA |   .1489579   .0104999    14.19   0.000     .1283784    .1695374
+             |
+     logsale |
+         L1. |  -.0763513   .0119058    -6.41   0.000    -.0996863   -.0530162
+             |
+         mtb |
+         L1. |  -.0146507    .004248    -3.45   0.001    -.0229766   -.0063247
+             |
+        prof |
+         L1. |   .8192895   .0788613    10.39   0.000     .6647241    .9738548
+             |
+        tang |
+         L1. |  -.5982182   .0776673    -7.70   0.000    -.7504432   -.4459931
+             |
+     indblev |
+         L1. |  -1.467575   .1930386    -7.60   0.000    -1.845923   -1.089226
+             |
+   Half-life |   4.297423   .3287203    13.07   0.000     3.653144    4.941703
+------------------------------------------------------------------------------
+
+. eststo est6
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. esttab est* using "analysis/output/tab/tab6.tex", replace b(2) t(2) booktabs 
+> nomtitles nonumbers msign("$-$") nostar nonotes ///
+> stats(yearfixed r2_ N, fmt("%10.0fc") label("Year fixed effects" "$ R^{2}$"))
+>  order(SOA initlev $control Half-life) ///
+> coeflabel(initlev "Initial leverage" L.logsale "Log(Sales)" L.mtb "Market-to-
+> book" L.prof "Profitability" L.tang "Tangibility" L.indblev "Industry median 
+> lev.") ///
+> posthead(" & \multicolumn{3}{c}{Pooled OLS} & \multicolumn{2}{c}{Firm Fixed E
+> ffects} & \multicolumn{2}{c}{GMM} \\ \cmidrule(lr){2-4} \cmidrule(lr){5-6} \c
+> midrule(lr){7-8}" "Variable & (a) & (b) & (c) & (d) & (e) & (f) & (g) \\ \mid
+> rule") ///
+> prefoot("\\")
+(output written to analysis/output/tab/tab6.tex)
+
+. 
+end of do-file

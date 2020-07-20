@@ -1,0 +1,579 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   16.1   Copyright 1985-2019 StataCorp LLC
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     Special Edition                  College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+Single-user Stata license expires  5 Jul 2021:
+       Serial number:  401609700731
+         Licensed to:  Yongseok Kim
+                       Indiana University Bloomington
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+. do tabulate_tab2.do 
+
+. clear all
+
+. set more off
+
+. 
+. cd "~/Projects/Replication/LRZ2008"
+/Users/apple/Projects/Replication/LRZ2008
+
+. use "analysis/input/prepared"
+
+. tsset gvkey fyear
+       panel variable:  gvkey (unbalanced)
+        time variable:  fyear, 1965 to 2003, but with gaps
+                delta:  1 unit
+
+. 
+. preserve
+
+. collapse (firstnm) initblev = blev, by(gvkey)
+
+. tempfile initblev
+
+. save `initblev', replace
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000002 no
+> t found)
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000002 saved
+
+. restore
+
+. 
+. preserve
+
+. collapse (firstnm) initmlev = mlev, by(gvkey)
+
+. tempfile initmlev
+
+. save `initmlev', replace
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000004 no
+> t found)
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000004 saved
+
+. restore
+
+. 
+. merge m:1 gvkey using `initblev'
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           247,054  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. 
+. merge m:1 gvkey using `initmlev'
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           247,054  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. 
+. tsset gvkey fyear
+       panel variable:  gvkey (unbalanced)
+        time variable:  fyear, 1965 to 2003, but with gaps
+                delta:  1 unit
+
+. 
+. foreach v in logsale mtb prof tang cfvol indblev divpayer {
+  2.         gen lag1_`v' = L.`v'
+  3. }
+(29,230 missing values generated)
+(80,899 missing values generated)
+(28,762 missing values generated)
+(25,421 missing values generated)
+(79,050 missing values generated)
+(22,486 missing values generated)
+(22,489 missing values generated)
+
+. 
+. by gvkey: drop if _n == 1
+(22,076 observations deleted)
+
+. 
+. foreach v of varlist lag1_* {
+  2.         drop if missing(`v')
+  3. }
+(7,154 observations deleted)
+(54,720 observations deleted)
+(2,128 observations deleted)
+(1,141 observations deleted)
+(26,595 observations deleted)
+(0 observations deleted)
+(2 observations deleted)
+
+. 
+. foreach v of varlist initblev initmlev lag1_* {
+  2.         egen `v'_std = std(`v')
+  3. }
+(6 missing values generated)
+
+. 
+. global control1 "lag1_logsale_std lag1_mtb_std lag1_prof_std lag1_tang_std"
+
+. global control2 "lag1_logsale_std lag1_mtb_std lag1_prof_std lag1_tang_std la
+> g1_indblev_std lag1_cfvol_std lag1_divpayer_std"
+
+. 
+. * Column 1
+. qui reghdfe blev initblev_std, noabsorb cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" "_cons"
+
+. mat rownames V = "initlev" "_cons"
+
+. mat colnames V = "initlev" "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq1
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.13"
+
+. estadd local yearfixed "No"
+
+added macro:
+          e(yearfixed) : "No"
+
+. 
+. * Column 2
+. qui reghdfe blev initblev_std $control1, a(cyear) cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" $control1 "_cons"
+
+. mat rownames V = "initlev" $control1 "_cons"
+
+. mat colnames V = "initlev" $control1 "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq2
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.21"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. * Column 3
+. qui reghdfe blev initblev_std $control2, a(cyear) cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" $control2 "_cons"
+
+. mat rownames V = "initlev" $control2 "_cons"
+
+. mat colnames V = "initlev" $control2 "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq3
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.25"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. * Column 4
+. qui reghdfe mlev initmlev_std, noabsorb cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" "_cons"
+
+. mat rownames V = "initlev" "_cons"
+
+. mat colnames V = "initlev" "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq4
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.20"
+
+. estadd local yearfixed "No"
+
+added macro:
+          e(yearfixed) : "No"
+
+. 
+. * Column 5
+. qui reghdfe mlev initmlev_std $control1, a(cyear) cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" $control1 "_cons"
+
+. mat rownames V = "initlev" $control1 "_cons"
+
+. mat colnames V = "initlev" $control1 "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq5
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.33"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. * Column 6
+. qui reghdfe mlev initmlev_std $control2, a(cyear) cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" $control2 "_cons"
+
+. mat rownames V = "initlev" $control2 "_cons"
+
+. mat colnames V = "initlev" $control2 "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq6
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.37"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. esttab eq1 eq2 eq3 eq4 eq5 eq6 using "analysis/output/tab/tab2a.tex", replace
+>  b(2) t(2) booktabs nostar order(initlev) msign("$-$") ///
+> stats(yearfixed r2_ N, fmt(%10.0fc) label("Year fixed effects" "Adj. $ R^2$" 
+> "Obs.")) ///
+> coeflabel(initlev "Initial leverage" lag1_logsale_std "Log(Sales)" lag1_mtb_s
+> td "Market-to-book" lag1_prof_std "Profitability" lag1_tang_std "Tangibility"
+>  lag1_cfvol_std "Cash flow vol." lag1_indblev_std "Industry median lev." lag1
+> _divpayer_std "Dividend payer") ///
+> nonumbers nomtitles nocons nonotes ///
+> posthead("Variable & \multicolumn{3}{c}{Book Leverage} & \multicolumn{3}{c}{M
+> arket Leverage} \\ \midrule") ///
+> prefoot("\\")
+(output written to analysis/output/tab/tab2a.tex)
+
+. 
+. /* Panel B */
+. keep if survivor == 1
+(59,463 observations deleted)
+
+. 
+. * Column 1
+. qui reghdfe blev initblev_std, noabsorb cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" "_cons"
+
+. mat rownames V = "initlev" "_cons"
+
+. mat colnames V = "initlev" "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq1
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.16"
+
+. estadd local yearfixed "No"
+
+added macro:
+          e(yearfixed) : "No"
+
+. 
+. * Column 2
+. qui reghdfe blev initblev_std $control1, a(cyear) cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" $control1 "_cons"
+
+. mat rownames V = "initlev" $control1 "_cons"
+
+. mat colnames V = "initlev" $control1 "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq2
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.24"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. * Column 3
+. qui reghdfe blev initblev_std $control2, a(cyear) cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" $control2 "_cons"
+
+. mat rownames V = "initlev" $control2 "_cons"
+
+. mat colnames V = "initlev" $control2 "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq3
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.27"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. * Column 4
+. qui reghdfe mlev initmlev_std, noabsorb cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" "_cons"
+
+. mat rownames V = "initlev" "_cons"
+
+. mat colnames V = "initlev" "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq4
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.18"
+
+. estadd local yearfixed "No"
+
+added macro:
+          e(yearfixed) : "No"
+
+. 
+. * Column 5
+. qui reghdfe mlev initmlev_std $control1, a(cyear) cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" $control1 "_cons"
+
+. mat rownames V = "initlev" $control1 "_cons"
+
+. mat colnames V = "initlev" $control1 "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq5
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.36"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. * Column 6
+. qui reghdfe mlev initmlev_std $control2, a(cyear) cl(gvkey)
+
+. local r2_ : di %3.2f e(r2_a)
+
+. local nobs = e(N)
+
+. mat b = e(b)
+
+. mat V = e(V)
+
+. 
+. mat colnames b = "initlev" $control2 "_cons"
+
+. mat rownames V = "initlev" $control2 "_cons"
+
+. mat colnames V = "initlev" $control2 "_cons"
+
+. 
+. ereturn post b V, obs(`nobs')
+
+. eststo eq6
+
+. estadd local r2_ "`r2_'"
+
+added macro:
+                e(r2_) : "0.40"
+
+. estadd local yearfixed "Yes"
+
+added macro:
+          e(yearfixed) : "Yes"
+
+. 
+. esttab eq1 eq2 eq3 eq4 eq5 eq6 using "analysis/output/tab/tab2b.tex", replace
+>  b(2) t(2) booktabs nostar order(initlev) msign("$-$") ///
+> stats(yearfixed r2_ N, fmt(%10.0fc) label("Year fixed effects" "Adj. $ R^2$" 
+> "Obs.")) ///
+> coeflabel(initlev "Initial leverage" lag1_logsale_std "Log(Sales)" lag1_mtb_s
+> td "Market-to-book" lag1_prof_std "Profitability" lag1_tang_std "Tangibility"
+>  lag1_cfvol_std "Cash flow vol." lag1_indblev_std "Industry median lev." lag1
+> _divpayer_std "Dividend payer") ///
+> nonumbers nomtitles nocons nonotes ///
+> posthead("Variable & \multicolumn{3}{c}{Book Leverage} & \multicolumn{3}{c}{M
+> arket Leverage} \\ \midrule") ///
+> prefoot("\\")
+(output written to analysis/output/tab/tab2b.tex)
+
+. 
+end of do-file

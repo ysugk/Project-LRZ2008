@@ -1,0 +1,346 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   16.1   Copyright 1985-2019 StataCorp LLC
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     Special Edition                  College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+Single-user Stata license expires  5 Jul 2021:
+       Serial number:  401609700731
+         Licensed to:  Yongseok Kim
+                       Indiana University Bloomington
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+. do prepare_data.do 
+
+. clear all
+
+. set more off
+
+. 
+. cd "~/Projects/Replication/LRZ2008"
+/Users/apple/Projects/Replication/LRZ2008
+
+. 
+. use "build/output/data"
+
+. save "analysis/input/data", replace
+file analysis/input/data.dta saved
+
+. 
+. destring gvkey sic, replace
+gvkey: all characters numeric; replaced as long
+sic: all characters numeric; replaced as int
+
+. duplicates drop gvkey fyear, force
+
+Duplicates in terms of gvkey fyear
+
+(2 observations deleted)
+
+. tsset gvkey fyear
+       panel variable:  gvkey (unbalanced)
+        time variable:  fyear, 1950 to 2010, but with gaps
+                delta:  1 unit
+
+. 
+. * Basic filter
+. drop if missing(at)
+(45,816 observations deleted)
+
+. 
+. * Drop financial firms
+. drop if sic >= 6000 & sic <= 6999
+(57,463 observations deleted)
+
+. 
+. * Define variables
+. gen sic2 = int(sic/100)
+
+. gen ffind = .
+(317,469 missing values generated)
+
+. replace ffind = 1 if sic >= 100 & sic <= 999
+(1,472 real changes made)
+
+. replace ffind = 2 if sic >= 1000 & sic <= 1299
+(10,277 real changes made)
+
+. replace ffind = 3 if sic >= 1300 & sic <= 1399
+(17,037 real changes made)
+
+. replace ffind = 4 if sic >= 1400 & sic <= 1499
+(1,227 real changes made)
+
+. replace ffind = 5 if sic >= 1500 & sic <= 1799
+(4,289 real changes made)
+
+. replace ffind = 6 if sic >= 2000 & sic <= 2099
+(10,026 real changes made)
+
+. replace ffind = 7 if sic >= 2100 & sic <= 2199
+(518 real changes made)
+
+. replace ffind = 8 if sic >= 2200 & sic <= 2299
+(2,988 real changes made)
+
+. replace ffind = 9 if sic >= 2300 & sic <= 2399
+(3,909 real changes made)
+
+. replace ffind = 10 if sic >= 2400 & sic <= 2499
+(2,632 real changes made)
+
+. 
+. replace ffind = 11 if sic >= 2500 & sic <= 2599
+(2,176 real changes made)
+
+. replace ffind = 12 if sic >= 2600 & sic <= 2661
+(3,066 real changes made)
+
+. replace ffind = 13 if sic >= 2700 & sic <= 2799
+(5,024 real changes made)
+
+. replace ffind = 14 if sic >= 2800 & sic <= 2899
+(22,745 real changes made)
+
+. replace ffind = 15 if sic >= 2900 & sic <= 2999
+(2,816 real changes made)
+
+. replace ffind = 16 if sic >= 3000 & sic <= 3099
+(4,493 real changes made)
+
+. replace ffind = 17 if sic >= 3100 & sic <= 3199
+(1,151 real changes made)
+
+. replace ffind = 18 if sic >= 3200 & sic <= 3299
+(3,185 real changes made)
+
+. replace ffind = 19 if sic >= 3300 & sic <= 3399
+(6,204 real changes made)
+
+. replace ffind = 20 if sic >= 3400 & sic <= 3499
+(6,994 real changes made)
+
+. 
+. replace ffind = 21 if sic >= 3500 & sic <= 3599
+(19,405 real changes made)
+
+. replace ffind = 22 if sic >= 3600 & sic <= 3699
+(22,502 real changes made)
+
+. replace ffind = 23 if sic >= 3700 & sic <= 3799
+(8,450 real changes made)
+
+. replace ffind = 24 if sic >= 3800 & sic <= 3879
+(17,100 real changes made)
+
+. replace ffind = 25 if sic >= 3900 & sic <= 3999
+(3,679 real changes made)
+
+. replace ffind = 26 if sic >= 4000 & sic <= 4799
+(9,687 real changes made)
+
+. replace ffind = 27 if sic >= 4800 & sic <= 4829
+(6,481 real changes made)
+
+. replace ffind = 28 if sic >= 4830 & sic <= 4899
+(5,276 real changes made)
+
+. replace ffind = 29 if sic >= 4900 & sic <= 4949
+(17,728 real changes made)
+
+. replace ffind = 30 if sic >= 4950 & sic <= 4959
+(1,564 real changes made)
+
+. 
+. replace ffind = 31 if sic >= 4960 & sic <= 4969
+(36 real changes made)
+
+. replace ffind = 32 if sic >= 4970 & sic <= 4979
+(0 real changes made)
+
+. replace ffind = 33 if sic >= 5000 & sic <= 5199
+(13,966 real changes made)
+
+. replace ffind = 34 if sic >= 5200 & sic <= 5999
+(22,656 real changes made)
+
+. replace ffind = 35 if sic >= 6000 & sic <= 6999
+(0 real changes made)
+
+. replace ffind = 36 if sic >= 7000 & sic <= 8999
+(49,103 real changes made)
+
+. replace ffind = 37 if sic >= 9000 & sic <= 9999
+(5,489 real changes made)
+
+. replace ffind = 38 if !missing(sic) & missing(ffind)
+(2,118 real changes made)
+
+. 
+. g cyear = year(datadate)
+
+. la var cyear "calender year"
+
+. g dt = dlc + dltt
+(5,589 missing values generated)
+
+. la var dt "total debt"
+
+. g blev = dt / at
+(6,260 missing values generated)
+
+. la var blev "Book leverage"
+
+. g size = log(at/(gdpdeflator/100))
+(671 missing values generated)
+
+. la var size "firm size"
+
+. g logsale = log(sale/(gdpdeflator/100))
+(14,396 missing values generated)
+
+. la var logsale "Log(Sales)"
+
+. g prof = oibdp / at
+(5,144 missing values generated)
+
+. la var prof "Profitability"
+
+. g ocf = oibdp / at
+(5,144 missing values generated)
+
+. la var ocf "operating income over total asssets"
+
+. tsegen cfvol = rowsd(L(1/10).ocf, 3)
+(74923 missing values generated)
+
+. la var cfvol "Cash flow vol."
+
+. g me = prcc_f * cshpri
+(76,505 missing values generated)
+
+. la var me "market equity"
+
+. g mlev = dt/(dt + me)
+(78,249 missing values generated)
+
+. la var mlev "Market leverage"
+
+. g mtb = (me + dt + pstkl - txditc)/at
+(84,487 missing values generated)
+
+. la var mtb "Market-to-book"
+
+. g collat = (invt + ppent)/at
+(7,754 missing values generated)
+
+. la var collat "collateral"
+
+. g zscore = (3.3 * pi + sale + 1.4 * re + 1.2 * (act - lct))/at
+(29,890 missing values generated)
+
+. la var zscore "Z-Score"
+
+. g tang = ppent/at
+(2,692 missing values generated)
+
+. la var tang "Tangibility"
+
+. g intang = intan/at
+(29,595 missing values generated)
+
+. la var intang "Intangible assets"
+
+. g ndi = (dt - L.dt) / L.at 
+(31,961 missing values generated)
+
+. la var ndi "net debt issuance"
+
+. g nei = (csho - L.csho * (L.ajex/ajex)) * 0.5 * (prcc_f + L.prcc_f * (ajex/L.
+> ajex)) / L.at
+(99,134 missing values generated)
+
+. la var nei "net equity issuance"
+
+. g divpayer = .
+(317,469 missing values generated)
+
+. replace divpayer = 1 if dvc > 0
+(127,714 real changes made)
+
+. replace divpayer = 0 if dvc == 0
+(189,751 real changes made)
+
+. la var divpayer "Dividend payer"
+
+. 
+. * Apply same filter
+. replace blev = . if blev < 0
+(1 real change made, 1 to missing)
+
+. replace blev = . if blev > 1
+(8,777 real changes made, 8,777 to missing)
+
+. replace mlev = . if mlev < 0
+(1 real change made, 1 to missing)
+
+. replace mlev = . if mlev > 1
+(0 real changes made)
+
+. 
+. preserve
+
+. collapse (median) indblev = blev, by(fyear ffind)
+
+. la var indblev "Median industry book leverage"
+
+. tempfile indblev
+
+. save `indblev', replace
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23823.000002 no
+> t found)
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23823.000002 saved
+
+. restore
+
+. 
+. merge m:1 fyear ffind using `indblev'
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                           317,469  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. 
+. keep if fyear >= 1965 & fyear <= 2003
+(70,415 observations deleted)
+
+. bysort gvkey: gen survivor = _N >= 20
+
+. la var survivor "survivor dummy"
+
+. 
+. winsor2 mtb prof tang intang cfvol ndi nei, c(1 99) replace trim
+
+. 
+. keep gvkey fyear cyear datadate sic2 ffind blev indblev size logsale prof ocf
+>  cfvol me mlev mtb collat zscore tang intang ndi nei survivor divpayer
+
+. 
+. save "analysis/input/prepared", replace
+file analysis/input/prepared.dta saved
+
+. 
+end of do-file

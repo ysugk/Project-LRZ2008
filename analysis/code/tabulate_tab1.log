@@ -1,0 +1,60 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   16.1   Copyright 1985-2019 StataCorp LLC
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     Special Edition                  College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+Single-user Stata license expires  5 Jul 2021:
+       Serial number:  401609700731
+         Licensed to:  Yongseok Kim
+                       Indiana University Bloomington
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+. do tabulate_tab1.do 
+
+. clear all
+
+. set more off
+
+. 
+. cd "~/Projects/Replication/LRZ2008"
+/Users/apple/Projects/Replication/LRZ2008
+
+. use "analysis/input/prepared"
+
+. 
+. qui estpost tabstat blev mlev logsale mtb prof tang cfvol indblev divpayer in
+> tang, stat(mean median sd) col(stat)
+
+. eststo all
+
+. 
+. qui estpost tabstat blev mlev logsale mtb prof tang cfvol indblev divpayer in
+> tang if survivor == 1, stat(mean median sd) col(stat)
+
+. eststo survivor
+
+. 
+. esttab all survivor using "analysis/output/tab/tab1.tex", replace booktabs ce
+> lls("mean(fmt(%3.2f)) sd(par(( )) fmt(%3.2f))" "p50(par([ ]) fmt(%3.2f))") no
+> mtitles nonumbers label nonotes msign("$-$") ///
+> mgroups("All Firms" "Survivors", pattern(1 1) ///
+> prefix(\multicolumn{@span}{c}{) suffix(}) ///
+> span erepeat("\cmidrule(lr){@span}")) ///
+> collabels("Mean [Median]" "(\textit{SD})", ///
+> prefix("\multicolumn{@span}{p{1.5cm}}{\centering ") suffix("}")) ///
+> stats(N, fmt("%10.0fc") labels("Obs."))
+(output written to analysis/output/tab/tab1.tex)
+
+. 
+. 
+end of do-file

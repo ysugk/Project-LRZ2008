@@ -1,0 +1,1338 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{caption}
+\usepackage{hyperref}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Replicating Lemmon, Roberts, and Zender (2008)
+\end_layout
+
+\begin_layout Author
+Yongseok Kim
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+In this paper, I replicate Lemmon, Roberts, and Zender (2008, Journal of
+ Finance)'s results.
+ In short, results are replicated well.
+ However, it is hard to exactly replicate statistics on Industry median
+ leverage.
+ Moreover, I fail to replicate column (g) of Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:6"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, which estimates system GMM (Blundell and Bond, 1998).
+ 
+\end_layout
+
+\begin_layout Section
+Data and Variables
+\end_layout
+
+\begin_layout Itemize
+Although LRZ define 
+\series bold
+Firm Size
+\series default
+ as log(book assets) where assets are deflated by the GDP deflator in the
+ appendix, they never use this variable.
+ Instead, they use 
+\series bold
+Log(Sales)
+\series default
+ which does not appear in the appendix
+\series bold
+.
+ 
+\series default
+I use log(sale) where sales are deflated by the GDP deflator.
+\end_layout
+
+\begin_layout Itemize
+LRZ do not clarify a definition of 
+\series bold
+Cash Flow Volatility
+\series default
+.
+ I use 10 years standard deviation of historical operating income (
+\series bold
+oibdp
+\series default
+), requiring at least 3 years of data.
+\end_layout
+
+\begin_layout Itemize
+In the appendix, LRZ define 
+\series bold
+Net equity Issuance
+\series default
+ as
+\begin_inset Formula 
+\[
+(csho_{t}-csho_{t-1}\times\frac{ajex_{t-1}}{ajex_{t}})\times(prcc\_f_{t}+prcc\_f_{t-1}\times\frac{ajex_{t}}{ajex_{t-1}})\times\frac{1}{at_{t-1}}.
+\]
+
+\end_inset
+
+I think this is a typo.
+ Instead, I use
+\begin_inset Formula 
+\[
+(csho_{t}-csho_{t-1}\times\frac{ajex_{t-1}}{ajex_{t}})\times\frac{1}{2}\times(prcc\_f_{t}+prcc\_f_{t-1}\times\frac{ajex_{t}}{ajex_{t-1}})\times\frac{1}{at_{t-1}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+I define 
+\series bold
+Dividend payer
+\series default
+ as
+\begin_inset Formula 
+\[
+I\{dvc_{t}>0\}
+\]
+
+\end_inset
+
+and 
+\series bold
+Intangible assets
+\series default
+ as
+\begin_inset Formula 
+\[
+\frac{intan_{t}}{at_{t}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Itemize
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: Summary statistics are replicated well, except a standard deviation of
+ 
+\series bold
+Industry median lev.
+\end_layout
+
+\begin_layout Itemize
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: Main figures are replicated well.
+ 
+\end_layout
+
+\begin_layout Itemize
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: The main table is replicated well.
+ Exceptions are 
+\series bold
+Cash flow vol.
+
+\series default
+ and 
+\series bold
+Industry median lev.
+\end_layout
+
+\begin_layout Itemize
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: The table is replicated well.
+\end_layout
+
+\begin_layout Itemize
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:4"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: LRZ do not specify how they calculate standard errors of long-run impact
+ terms.
+ By the Delta method, I derive
+\begin_inset Formula 
+\[
+F(\theta)=\begin{bmatrix}\iota'\\
+ & \iota'\\
+ &  & \ddots\\
+ &  &  & \iota'
+\end{bmatrix}
+\]
+
+\end_inset
+
+where
+\begin_inset Formula 
+\[
+\iota=[1,\cdots,1]'
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{align*}
+f(\hat{\theta})-f(\theta) & \approx F(\theta)(f(\hat{\theta})-f(\theta))\\
+ & =_{d}F(\theta)\mathbb{N}(0,V).
+\end{align*}
+
+\end_inset
+
+Hence
+\begin_inset Formula 
+\begin{align*}
+\text{avar}(f(\hat{\theta})) & =F(\theta)VF(\theta)'\\
+ & =\begin{bmatrix}\iota'V_{1}\iota\\
+ & \ddots\\
+ &  & \iota'V_{k}\iota
+\end{bmatrix}
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $V_{j}$
+\end_inset
+
+ is 
+\begin_inset Formula $l\times l$
+\end_inset
+
+ submatrix of variable 
+\begin_inset Formula $j$
+\end_inset
+
+ and 
+\begin_inset Formula $l$
+\end_inset
+
+ is a number of lags.
+\end_layout
+
+\begin_layout Itemize
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:5"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: It is hard to get exactly same numbers.
+\end_layout
+
+\begin_layout Itemize
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: This figure is replicated well.
+\end_layout
+
+\begin_layout Itemize
+Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:6"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: It is hard to replicate column (g).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Half-life
+\series default
+: Let
+\begin_inset Formula 
+\[
+\text{avar}(\lambda)=V.
+\]
+
+\end_inset
+
+Define
+\begin_inset Formula 
+\[
+f(\lambda)=\frac{\ln0.5}{\ln(1-\lambda)},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+F(\lambda) & =\frac{\partial}{\partial\lambda}f(\lambda)\\
+ & =\frac{\ln0.5}{\ln(1-\lambda)^{2}}\frac{1}{1-\lambda}.
+\end{align*}
+
+\end_inset
+
+By the Delta method, we obtain
+\begin_inset Formula 
+\begin{align*}
+\text{avar}(f(\hat{\lambda})) & =F(\hat{\lambda})VF(\hat{\lambda})\\
+ & =\big[\frac{\ln0.5}{\ln(1-\lambda)^{2}}\frac{1}{1-\lambda}\big]^{2}V.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\beta$
+\end_inset
+
+: Let
+\begin_inset Formula 
+\[
+\text{avar}(-\lambda,\lambda\beta_{1},\cdots,\lambda\beta_{j})=V.
+\]
+
+\end_inset
+
+Define
+\begin_inset Formula 
+\begin{align*}
+f(-\lambda,\lambda\beta_{1},\cdots,\lambda\beta_{j}) & =[-\frac{\lambda\beta_{1}}{-\lambda},\cdots,-\frac{\lambda\beta_{j}}{-\lambda}]'\\
+ & =[\beta_{1},\cdots,\beta_{j}]',
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+F(-\lambda,\lambda\beta_{1},\cdots,\lambda\beta_{j}) & =\frac{\partial}{\partial\theta'}f(\lambda,\lambda\beta_{1},\cdots,\lambda\beta_{j})\\
+ & =\begin{bmatrix}\beta_{1}/\lambda & 1/\lambda & 0 & \cdots & 0\\
+\beta_{2}/\lambda & 0 & 1/\lambda\\
+\vdots & \vdots &  & \ddots\\
+\beta_{j}/\lambda & 0 &  &  & 1/\lambda
+\end{bmatrix}.
+\end{align*}
+
+\end_inset
+
+By the Delta method, we obtain
+\begin_inset Formula 
+\[
+\text{avar}(\beta)=\frac{1}{\lambda^{2}}[\beta,I_{j}]V[\beta,I_{j}]'.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Summary Statistics
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:1"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset include
+LatexCommand input
+filename "../analysis/output/tab/tab1.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Book Leverage Portfolio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig1a.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Book Leverage Portfolio (Survivors)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig1b.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Market Leverage Portfolios
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig1c.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Market Leverage Portfolios (Survivors)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig1d.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Average leverage of actual leverage portfolios in event time
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Book Leverage Portfolio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig2a.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Book Leverage Portfolio (Survivors)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig2b.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Market Leverage Portfolios
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig2c.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Market Leverage Portfolios (Survivors)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig2d.pdf
+	width 48text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Average leverage of unexpected leverage portfolios in event time
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Effect of Initial Leverage on Future Leverage
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:2"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+subfloat[All Firms]{
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand input
+filename "../analysis/output/tab/tab2a.tex"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{table}{1}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Continued
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ContinuedFloat
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+subfloat[Survivors]{
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand input
+filename "../analysis/output/tab/tab2b.tex"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways true
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{table}{2}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Variance Decomposition
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:3"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset include
+LatexCommand input
+filename "../analysis/output/tab/tab3.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A Distributed Lag Model of Leverage
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:4"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\size small
+\begin_inset CommandInset include
+LatexCommand input
+filename "/Users/apple/Projects/Replication/LRZ2008/analysis/output/tab/tab4.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Parameter Sensitivities to Model Specification
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:5"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\size small
+\begin_inset CommandInset include
+LatexCommand input
+filename "../analysis/output/tab/tab5.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Net Debt Issuing Activity
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig3a.pdf
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Net Equity Issuing Activity
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /Users/apple/Projects/Replication/LRZ2008/analysis/output/fig/fig3b.pdf
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Financing behavior of unexpected leverage portfolios in event time
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Speed of Adjustment
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:6"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\size small
+\begin_inset CommandInset include
+LatexCommand input
+filename "../analysis/output/tab/tab6.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
