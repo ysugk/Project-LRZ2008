@@ -53,7 +53,7 @@ Notes:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.160"
+                e(r2_) : "0.183"
 
 . estadd local yearfixed "Yes"
 
@@ -74,7 +74,7 @@ added macro:
 . estadd local rho_ "`rho_'"
 
 added macro:
-               e(rho_) : "0.659"
+               e(rho_) : "0.657"
 
 . estadd local yearfixed "Yes"
 
@@ -120,7 +120,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.263"
+                e(r2_) : "0.286"
 
 . estadd local yearfixed "Yes"
 
@@ -141,7 +141,7 @@ added macro:
 . estadd local rho_ "`rho_'"
 
 added macro:
-               e(rho_) : "0.659"
+               e(rho_) : "0.657"
 
 . estadd local yearfixed "Yes"
 

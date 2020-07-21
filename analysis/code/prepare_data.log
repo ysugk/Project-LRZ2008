@@ -40,8 +40,8 @@ file analysis/input/data.dta saved
 gvkey: all characters numeric; replaced as long
 sic: all characters numeric; replaced as int
 
-. replace sic = sich
-(256,019 real changes made, 212,652 to missing)
+. replace sic = sich if sich < .
+(43,367 real changes made)
 
 . duplicates drop gvkey fyear, force
 
@@ -62,132 +62,131 @@ Duplicates in terms of gvkey fyear
 . 
 . * Drop financial firms
 . drop if sic >= 6000 & sic <= 6999
-(30,807 observations deleted)
+(56,710 observations deleted)
 
 . 
 . * Define variables
 . gen sic2 = int(sic/100)
-(167,821 missing values generated)
 
 . gen ffind = .
-(344,125 missing values generated)
+(318,222 missing values generated)
 
 . replace ffind = 1 if sic >= 100 & sic <= 999
-(809 real changes made)
+(1,482 real changes made)
 
 . replace ffind = 2 if sic >= 1000 & sic <= 1299
-(4,587 real changes made)
+(10,127 real changes made)
 
 . replace ffind = 3 if sic >= 1300 & sic <= 1399
-(8,404 real changes made)
+(16,669 real changes made)
 
 . replace ffind = 4 if sic >= 1400 & sic <= 1499
-(538 real changes made)
+(1,211 real changes made)
 
 . replace ffind = 5 if sic >= 1500 & sic <= 1799
-(2,328 real changes made)
+(4,403 real changes made)
 
 . replace ffind = 6 if sic >= 2000 & sic <= 2099
-(4,321 real changes made)
+(10,135 real changes made)
 
 . replace ffind = 7 if sic >= 2100 & sic <= 2199
-(239 real changes made)
+(565 real changes made)
 
 . replace ffind = 8 if sic >= 2200 & sic <= 2299
-(1,037 real changes made)
+(3,058 real changes made)
 
 . replace ffind = 9 if sic >= 2300 & sic <= 2399
-(1,659 real changes made)
+(3,951 real changes made)
 
 . replace ffind = 10 if sic >= 2400 & sic <= 2499
-(1,012 real changes made)
+(2,530 real changes made)
 
 . 
 . replace ffind = 11 if sic >= 2500 & sic <= 2599
-(1,017 real changes made)
+(2,274 real changes made)
 
 . replace ffind = 12 if sic >= 2600 & sic <= 2661
-(1,321 real changes made)
+(3,184 real changes made)
 
 . replace ffind = 13 if sic >= 2700 & sic <= 2799
-(2,511 real changes made)
+(5,414 real changes made)
 
 . replace ffind = 14 if sic >= 2800 & sic <= 2899
-(14,631 real changes made)
+(21,839 real changes made)
 
 . replace ffind = 15 if sic >= 2900 & sic <= 2999
-(1,330 real changes made)
+(2,870 real changes made)
 
 . replace ffind = 16 if sic >= 3000 & sic <= 3099
-(2,071 real changes made)
+(4,570 real changes made)
 
 . replace ffind = 17 if sic >= 3100 & sic <= 3199
-(564 real changes made)
+(1,223 real changes made)
 
 . replace ffind = 18 if sic >= 3200 & sic <= 3299
-(1,195 real changes made)
+(3,254 real changes made)
 
 . replace ffind = 19 if sic >= 3300 & sic <= 3399
-(2,800 real changes made)
+(6,365 real changes made)
 
 . replace ffind = 20 if sic >= 3400 & sic <= 3499
-(2,653 real changes made)
+(7,035 real changes made)
 
 . 
 . replace ffind = 21 if sic >= 3500 & sic <= 3599
-(11,528 real changes made)
+(20,611 real changes made)
 
 . replace ffind = 22 if sic >= 3600 & sic <= 3699
-(13,824 real changes made)
+(22,988 real changes made)
 
 . replace ffind = 23 if sic >= 3700 & sic <= 3799
-(3,817 real changes made)
+(8,451 real changes made)
 
 . replace ffind = 24 if sic >= 3800 & sic <= 3879
-(11,347 real changes made)
+(17,559 real changes made)
 
 . replace ffind = 25 if sic >= 3900 & sic <= 3999
-(1,926 real changes made)
+(3,723 real changes made)
 
 . replace ffind = 26 if sic >= 4000 & sic <= 4799
-(5,264 real changes made)
+(9,762 real changes made)
 
 . replace ffind = 27 if sic >= 4800 & sic <= 4829
-(4,400 real changes made)
+(6,559 real changes made)
 
 . replace ffind = 28 if sic >= 4830 & sic <= 4899
-(3,233 real changes made)
+(4,795 real changes made)
 
 . replace ffind = 29 if sic >= 4900 & sic <= 4949
-(6,433 real changes made)
+(17,674 real changes made)
 
 . replace ffind = 30 if sic >= 4950 & sic <= 4959
-(1,210 real changes made)
+(1,550 real changes made)
 
 . 
 . replace ffind = 31 if sic >= 4960 & sic <= 4969
-(21 real changes made)
+(42 real changes made)
 
 . replace ffind = 32 if sic >= 4970 & sic <= 4979
 (0 real changes made)
 
 . replace ffind = 33 if sic >= 5000 & sic <= 5199
-(7,779 real changes made)
+(14,470 real changes made)
 
 . replace ffind = 34 if sic >= 5200 & sic <= 5999
-(12,003 real changes made)
+(23,053 real changes made)
 
 . replace ffind = 35 if sic >= 6000 & sic <= 6999
 (0 real changes made)
 
 . replace ffind = 36 if sic >= 7000 & sic <= 8999
-(35,225 real changes made)
+(49,058 real changes made)
 
 . replace ffind = 37 if sic >= 9000 & sic <= 9999
-(2,240 real changes made)
+(3,714 real changes made)
 
 . replace ffind = 38 if !missing(sic) & missing(ffind)
-(1,027 real changes made)
+(2,054 real changes made)
 
 . 
 . g cyear = year(datadate)
@@ -195,107 +194,107 @@ Duplicates in terms of gvkey fyear
 . la var cyear "calender year"
 
 . g dt = dlc + dltt
-(7,570 missing values generated)
+(5,562 missing values generated)
 
 . la var dt "total debt"
 
 . g blev = dt / at
-(8,258 missing values generated)
+(6,238 missing values generated)
 
 . la var blev "Book leverage"
 
 . g size = log(at/(gdpdeflator/100))
-(688 missing values generated)
+(676 missing values generated)
 
 . la var size "firm size"
 
 . g logsale = log(sale/(gdpdeflator/100))
-(15,753 missing values generated)
+(14,464 missing values generated)
 
 . la var logsale "Log(Sales)"
 
 . g prof = oibdp / at
-(6,713 missing values generated)
+(5,044 missing values generated)
 
 . la var prof "Profitability"
 
 . g ocf = oibdp / at
-(6,713 missing values generated)
+(5,044 missing values generated)
 
 . la var ocf "operating income over total asssets"
 
 . tsegen cfvol = rowsd(L(1/10).ocf, 3)
-(85912 missing values generated)
+(76006 missing values generated)
 
 . la var cfvol "Cash flow vol."
 
 . g me = prcc_f * cshpri
-(82,942 missing values generated)
+(76,541 missing values generated)
 
 . la var me "market equity"
 
 . g mlev = dt/(dt + me)
-(85,817 missing values generated)
+(78,261 missing values generated)
 
 . la var mlev "Market leverage"
 
 . g mtb = (me + dt + pstkl - txditc)/at
-(103,110 missing values generated)
+(84,560 missing values generated)
 
 . la var mtb "Market-to-book"
 
 . g collat = (invt + ppent)/at
-(12,256 missing values generated)
+(7,598 missing values generated)
 
 . la var collat "collateral"
 
 . g zscore = (3.3 * pi + sale + 1.4 * re + 1.2 * (act - lct))/at
-(49,523 missing values generated)
+(29,409 missing values generated)
 
 . la var zscore "Z-Score"
 
 . g tang = ppent/at
-(3,514 missing values generated)
+(2,571 missing values generated)
 
 . la var tang "Tangibility"
 
 . g intang = intan/at
-(35,275 missing values generated)
+(29,684 missing values generated)
 
 . la var intang "Intangible assets"
 
 . g ndi = (dt - L.dt) / L.at 
-(37,975 missing values generated)
+(32,675 missing values generated)
 
 . la var ndi "net debt issuance"
 
 . g nei = (csho - L.csho * (L.ajex/ajex)) * 0.5 * (prcc_f + L.prcc_f * (ajex/L.
 > ajex)) / L.at
-(108,684 missing values generated)
+(99,782 missing values generated)
 
 . la var nei "net equity issuance"
 
 . g divpayer = .
-(344,125 missing values generated)
+(318,222 missing values generated)
 
 . replace divpayer = 1 if dvc > 0
-(145,334 real changes made)
+(127,760 real changes made)
 
 . replace divpayer = 0 if dvc == 0
-(198,787 real changes made)
+(190,458 real changes made)
 
 . la var divpayer "Dividend payer"
 
 . 
 . * Apply same filter
 . replace blev = . if blev < 0
-(2 real changes made, 2 to missing)
+(1 real change made, 1 to missing)
 
 . replace blev = . if blev > 1
-(9,168 real changes made, 9,168 to missing)
+(8,835 real changes made, 8,835 to missing)
 
 . replace mlev = . if mlev < 0
-(2 real changes made, 2 to missing)
+(1 real change made, 1 to missing)
 
 . replace mlev = . if mlev > 1
 (0 real changes made)
@@ -310,9 +309,9 @@ Duplicates in terms of gvkey fyear
 . tempfile indblev
 
 . save `indblev', replace
-(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St64705.000002 no
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St66725.000002 no
 > t found)
-file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St64705.000002 saved
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St66725.000002 saved
 
 . restore
 
@@ -322,14 +321,14 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St64705.000002 saved
     Result                           # of obs.
     -----------------------------------------
     not matched                             0
-    matched                           344,125  (_merge==3)
+    matched                           318,222  (_merge==3)
     -----------------------------------------
 
 . drop _merge
 
 . 
 . keep if fyear >= 1965 & fyear <= 2003
-(72,986 observations deleted)
+(70,616 observations deleted)
 
 . bysort gvkey: gen survivor = _N >= 20
 

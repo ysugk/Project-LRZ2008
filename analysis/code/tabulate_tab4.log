@@ -40,7 +40,7 @@ Notes:
 . qui reg logsale fyear, nocons
 
 . predict logsaler, r
-(9,101 missing values generated)
+(8,077 missing values generated)
 
 . 
 . preserve
@@ -50,9 +50,9 @@ Notes:
 . tempfile initblev
 
 . save `initblev', replace
-(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000002 no
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St67909.000002 no
 > t found)
-file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000002 saved
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St67909.000002 saved
 
 . restore
 
@@ -64,9 +64,9 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000002 saved
 . tempfile initmlev
 
 . save `initmlev', replace
-(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000004 no
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St67909.000004 no
 > t found)
-file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000004 saved
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St67909.000004 saved
 
 . restore
 
@@ -76,7 +76,7 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000004 saved
     Result                           # of obs.
     -----------------------------------------
     not matched                             0
-    matched                           271,139  (_merge==3)
+    matched                           247,606  (_merge==3)
     -----------------------------------------
 
 . drop _merge
@@ -87,7 +87,7 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000004 saved
     Result                           # of obs.
     -----------------------------------------
     not matched                             0
-    matched                           271,139  (_merge==3)
+    matched                           247,606  (_merge==3)
     -----------------------------------------
 
 . drop _merge
@@ -104,111 +104,111 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000004 saved
   3.                 gen lag`j'_`v' = L`j'.`v'
   4.         }
   5. }
-(33,795 missing values generated)
-(57,005 missing values generated)
-(78,427 missing values generated)
-(97,910 missing values generated)
-(115,647 missing values generated)
-(131,416 missing values generated)
-(145,286 missing values generated)
-(157,940 missing values generated)
-(99,574 missing values generated)
-(116,576 missing values generated)
-(132,034 missing values generated)
-(146,030 missing values generated)
-(158,398 missing values generated)
-(169,448 missing values generated)
-(179,368 missing values generated)
-(188,343 missing values generated)
-(33,768 missing values generated)
-(57,101 missing values generated)
-(78,598 missing values generated)
-(98,187 missing values generated)
-(115,996 missing values generated)
-(131,786 missing values generated)
-(145,668 missing values generated)
-(158,350 missing values generated)
-(29,827 missing values generated)
-(53,882 missing values generated)
-(75,948 missing values generated)
-(96,011 missing values generated)
-(114,167 missing values generated)
-(130,255 missing values generated)
-(144,360 missing values generated)
-(157,247 missing values generated)
-(90,996 missing values generated)
-(108,898 missing values generated)
-(124,860 missing values generated)
-(138,957 missing values generated)
-(151,810 missing values generated)
-(163,345 missing values generated)
-(173,452 missing values generated)
-(182,522 missing values generated)
-(26,209 missing values generated)
-(50,713 missing values generated)
-(73,170 missing values generated)
-(93,561 missing values generated)
-(112,018 missing values generated)
-(128,369 missing values generated)
-(142,696 missing values generated)
-(155,765 missing values generated)
-(26,211 missing values generated)
-(50,715 missing values generated)
-(73,172 missing values generated)
-(93,561 missing values generated)
-(112,018 missing values generated)
-(128,368 missing values generated)
-(142,696 missing values generated)
-(155,765 missing values generated)
+(29,836 missing values generated)
+(50,437 missing values generated)
+(69,544 missing values generated)
+(87,054 missing values generated)
+(103,026 missing values generated)
+(117,243 missing values generated)
+(129,811 missing values generated)
+(141,261 missing values generated)
+(81,439 missing values generated)
+(97,772 missing values generated)
+(112,636 missing values generated)
+(126,101 missing values generated)
+(138,028 missing values generated)
+(148,683 missing values generated)
+(158,269 missing values generated)
+(166,948 missing values generated)
+(29,289 missing values generated)
+(50,084 missing values generated)
+(69,339 missing values generated)
+(87,013 missing values generated)
+(103,105 missing values generated)
+(117,393 missing values generated)
+(130,008 missing values generated)
+(141,512 missing values generated)
+(25,934 missing values generated)
+(47,360 missing values generated)
+(67,097 missing values generated)
+(85,181 missing values generated)
+(101,580 missing values generated)
+(116,125 missing values generated)
+(128,931 missing values generated)
+(140,627 missing values generated)
+(80,316 missing values generated)
+(96,597 missing values generated)
+(111,129 missing values generated)
+(124,000 missing values generated)
+(135,722 missing values generated)
+(146,262 missing values generated)
+(155,510 missing values generated)
+(163,833 missing values generated)
+(23,154 missing values generated)
+(44,951 missing values generated)
+(65,004 missing values generated)
+(83,338 missing values generated)
+(99,952 missing values generated)
+(114,672 missing values generated)
+(127,620 missing values generated)
+(139,421 missing values generated)
+(23,157 missing values generated)
+(44,954 missing values generated)
+(65,007 missing values generated)
+(83,339 missing values generated)
+(99,953 missing values generated)
+(114,672 missing values generated)
+(127,620 missing values generated)
+(139,421 missing values generated)
 
 . 
 . by gvkey: drop if _n == 1
-(25,413 observations deleted)
+(22,444 observations deleted)
 
 . 
 . foreach v of varlist lag*_* {
   2.         drop if missing(`v')
   3. }
-(8,382 observations deleted)
-(24,856 observations deleted)
-(22,487 observations deleted)
-(20,189 observations deleted)
-(18,188 observations deleted)
-(16,059 observations deleted)
-(14,025 observations deleted)
-(12,675 observations deleted)
-(19,283 observations deleted)
-(2,009 observations deleted)
-(1,942 observations deleted)
-(2,139 observations deleted)
-(2,219 observations deleted)
-(2,441 observations deleted)
-(2,974 observations deleted)
-(5,861 observations deleted)
-(518 observations deleted)
-(212 observations deleted)
+(7,392 observations deleted)
+(22,133 observations deleted)
+(20,105 observations deleted)
+(18,180 observations deleted)
+(16,409 observations deleted)
+(14,501 observations deleted)
+(12,720 observations deleted)
+(11,480 observations deleted)
+(15,394 observations deleted)
+(1,974 observations deleted)
+(1,899 observations deleted)
+(2,044 observations deleted)
+(2,105 observations deleted)
+(2,319 observations deleted)
+(2,844 observations deleted)
+(5,683 observations deleted)
+(450 observations deleted)
 (196 observations deleted)
-(182 observations deleted)
-(181 observations deleted)
-(189 observations deleted)
-(225 observations deleted)
-(280 observations deleted)
-(300 observations deleted)
-(127 observations deleted)
-(103 observations deleted)
+(186 observations deleted)
+(173 observations deleted)
+(173 observations deleted)
+(183 observations deleted)
+(216 observations deleted)
+(267 observations deleted)
+(275 observations deleted)
+(122 observations deleted)
 (98 observations deleted)
+(91 observations deleted)
+(90 observations deleted)
 (96 observations deleted)
 (100 observations deleted)
-(105 observations deleted)
-(109 observations deleted)
-(24 observations deleted)
-(5 observations deleted)
-(6 observations deleted)
-(8 observations deleted)
-(16 observations deleted)
-(1,480 observations deleted)
-(3,407 observations deleted)
+(106 observations deleted)
+(201 observations deleted)
+(87 observations deleted)
+(104 observations deleted)
+(130 observations deleted)
+(190 observations deleted)
+(1,551 observations deleted)
 (3,423 observations deleted)
+(3,430 observations deleted)
 (0 observations deleted)
 (0 observations deleted)
 (0 observations deleted)

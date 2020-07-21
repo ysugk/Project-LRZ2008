@@ -58,8 +58,1126 @@ Notes:
  11.         save analysis/temp/levport`year', replace
  12.         restore
  13. }
-insufficient observations
-r(2001);
+(246,681 missing values generated)
+(246,681 missing values generated)
+(24,986 real changes made)
+(39 observations deleted)
+(72 observations deleted)
+file analysis/temp/levport1966.dta saved
+(246,064 missing values generated)
+(246,064 missing values generated)
+(37,773 real changes made)
+(39 observations deleted)
+(68 observations deleted)
+file analysis/temp/levport1967.dta saved
+(245,915 missing values generated)
+(245,915 missing values generated)
+(39,047 real changes made)
+(39 observations deleted)
+(64 observations deleted)
+file analysis/temp/levport1968.dta saved
+(245,482 missing values generated)
+(245,482 missing values generated)
+(45,534 real changes made)
+(39 observations deleted)
+(60 observations deleted)
+file analysis/temp/levport1969.dta saved
+(245,226 missing values generated)
+(245,226 missing values generated)
+(47,458 real changes made)
+(39 observations deleted)
+(56 observations deleted)
+file analysis/temp/levport1970.dta saved
+(244,827 missing values generated)
+(244,827 missing values generated)
+(49,498 real changes made)
+(39 observations deleted)
+(52 observations deleted)
+file analysis/temp/levport1971.dta saved
+(244,565 missing values generated)
+(244,565 missing values generated)
+(51,441 real changes made)
+(39 observations deleted)
+(48 observations deleted)
+file analysis/temp/levport1972.dta saved
+(244,358 missing values generated)
+(244,358 missing values generated)
+(52,549 real changes made)
+(39 observations deleted)
+(44 observations deleted)
+file analysis/temp/levport1973.dta saved
+(244,329 missing values generated)
+(244,329 missing values generated)
+(51,615 real changes made)
+(39 observations deleted)
+(40 observations deleted)
+file analysis/temp/levport1974.dta saved
+(244,346 missing values generated)
+(244,346 missing values generated)
+(49,900 real changes made)
+(39 observations deleted)
+(36 observations deleted)
+file analysis/temp/levport1975.dta saved
+(244,377 missing values generated)
+(244,377 missing values generated)
+(47,634 real changes made)
+(39 observations deleted)
+(32 observations deleted)
+file analysis/temp/levport1976.dta saved
+(244,420 missing values generated)
+(244,420 missing values generated)
+(45,532 real changes made)
+(39 observations deleted)
+(28 observations deleted)
+file analysis/temp/levport1977.dta saved
+(244,484 missing values generated)
+(244,484 missing values generated)
+(44,222 real changes made)
+(39 observations deleted)
+(24 observations deleted)
+file analysis/temp/levport1978.dta saved
+(244,323 missing values generated)
+(244,323 missing values generated)
+(43,996 real changes made)
+(39 observations deleted)
+(20 observations deleted)
+file analysis/temp/levport1979.dta saved
+(244,089 missing values generated)
+(244,089 missing values generated)
+(44,959 real changes made)
+(39 observations deleted)
+(16 observations deleted)
+file analysis/temp/levport1980.dta saved
+(243,965 missing values generated)
+(243,965 missing values generated)
+(44,256 real changes made)
+(39 observations deleted)
+(12 observations deleted)
+file analysis/temp/levport1981.dta saved
+(243,519 missing values generated)
+(243,519 missing values generated)
+(46,850 real changes made)
+(39 observations deleted)
+(8 observations deleted)
+file analysis/temp/levport1982.dta saved
+(243,305 missing values generated)
+(243,305 missing values generated)
+(47,603 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1983.dta saved
+(243,066 missing values generated)
+(243,066 missing values generated)
+(49,041 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1984.dta saved
+(243,043 missing values generated)
+(243,043 missing values generated)
+(47,708 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1985.dta saved
+(243,070 missing values generated)
+(243,070 missing values generated)
+(45,881 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1986.dta saved
+(242,958 missing values generated)
+(242,958 missing values generated)
+(45,332 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1987.dta saved
+(242,731 missing values generated)
+(242,731 missing values generated)
+(46,173 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1988.dta saved
+(242,977 missing values generated)
+(242,977 missing values generated)
+(42,684 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1989.dta saved
+(242,996 missing values generated)
+(242,996 missing values generated)
+(40,541 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1990.dta saved
+(243,041 missing values generated)
+(243,041 missing values generated)
+(37,900 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1991.dta saved
+(242,948 missing values generated)
+(242,948 missing values generated)
+(35,750 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1992.dta saved
+(242,651 missing values generated)
+(242,651 missing values generated)
+(34,303 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1993.dta saved
+(242,290 missing values generated)
+(242,290 missing values generated)
+(33,375 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1994.dta saved
+(242,009 missing values generated)
+(242,009 missing values generated)
+(31,658 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1995.dta saved
+(241,455 missing values generated)
+(241,455 missing values generated)
+(30,552 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1996.dta saved
+(240,974 missing values generated)
+(240,974 missing values generated)
+(28,536 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1997.dta saved
+(241,088 missing values generated)
+(241,088 missing values generated)
+(24,307 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1998.dta saved
+(241,274 missing values generated)
+(241,274 missing values generated)
+(19,838 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1999.dta saved
+(241,364 missing values generated)
+(241,364 missing values generated)
+(15,464 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport2000.dta saved
+(241,413 missing values generated)
+(241,413 missing values generated)
+(10,912 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport2001.dta saved
+(241,681 missing values generated)
+(241,681 missing values generated)
+(5,469 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport2002.dta saved
+(241,967 missing values generated)
+(241,967 missing values generated)
+(0 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+(note: dataset contains 0 observations)
+file analysis/temp/levport2003.dta saved
 
+. 
+. use "analysis/temp/levport1966", clear
+
+. 
+. foreach year of num 1967/2003 {
+  2.         merge 1:1 eventtime levport using analysis/temp/levport`year'
+  3.         drop _merge
+  4. }
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             4
+        from master                         4  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                76  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             8
+        from master                         8  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                72  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            12
+        from master                        12  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                68  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            16
+        from master                        16  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                64  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            20
+        from master                        20  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                60  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            24
+        from master                        24  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                56  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            28
+        from master                        28  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                52  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            32
+        from master                        32  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                48  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            36
+        from master                        36  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                44  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            40
+        from master                        40  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                40  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            44
+        from master                        44  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                36  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            48
+        from master                        48  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                32  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            52
+        from master                        52  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                28  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            56
+        from master                        56  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                24  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            60
+        from master                        60  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                20  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            64
+        from master                        64  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                16  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            68
+        from master                        68  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                12  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            72
+        from master                        72  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                 8  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            76
+        from master                        76  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                 4  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            80
+        from master                        80  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                 0  (_merge==3)
+    -----------------------------------------
+
+. 
+. egen p = rowmean(ndi*)
+
+. egen ste = rowmean(ste*)
+
+. gen pupper = p + ste
+
+. gen plower = p - ste
+
+. 
+. twoway  ///
+> (scatter p eventtime if levport == 0, con(l)) ///
+> (scatter p eventtime if levport == 1, con(l)) ///
+> (scatter p eventtime if levport == 2, con(l)) ///
+> (scatter p eventtime if levport == 3, con(l)), ///
+> legend(label(1 "Low") label(2 "Medium") label(3 "High") label(4 "Very High") 
+> rows(1) pos(12) size(vsmall)) ///
+> legend(order(1 2 3 4)) ///
+> xtitle("Event Time (Years)") ytitle("Net Debt Issue / Assets") ///
+> yscale(range(0 0.06)) ylabel(0(0.01)0.06) ///
+> xscale(range(1 20)) xlabel(1(1)20)
+
+. 
+. graph export "analysis/output/fig/fig3a.pdf", replace
+(file analysis/output/fig/fig3a.pdf written in PDF format)
+
+. 
+. /* Figure 3: Panel B */
+. use "analysis/input/prepared", clear
+
+. 
+. tsset gvkey fyear
+       panel variable:  gvkey (unbalanced)
+        time variable:  fyear, 1965 to 2003, but with gaps
+                delta:  1 unit
+
+. 
+. foreach year of num 1966/2003 {
+  2.         preserve
+  3.         qui reghdfe blev L.size L.prof L.tang L.mtb if fyear == `year', a(
+> ffind) res
+  4.         predict res, r
+  5.         egen levport = cut(res) if fyear == `year', group(4)
+  6.         replace levport = levport[_n - 1] if (gvkey == gvkey[_n - 1]) & mi
+> ssing(levport)
+  7.         gen eventtime = fyear - `year'
+  8.         collapse (mean) nei`year' = nei (semean) ste`year' = nei, by(event
+> time levport)
+  9.         drop if missing(levport)
+ 10.         keep if inrange(eventtime, 1, 20)
+ 11.         save analysis/temp/levport`year', replace
+ 12.         restore
+ 13. }
+(246,681 missing values generated)
+(246,681 missing values generated)
+(24,986 real changes made)
+(39 observations deleted)
+(72 observations deleted)
+file analysis/temp/levport1966.dta saved
+(246,064 missing values generated)
+(246,064 missing values generated)
+(37,773 real changes made)
+(39 observations deleted)
+(68 observations deleted)
+file analysis/temp/levport1967.dta saved
+(245,915 missing values generated)
+(245,915 missing values generated)
+(39,047 real changes made)
+(39 observations deleted)
+(64 observations deleted)
+file analysis/temp/levport1968.dta saved
+(245,482 missing values generated)
+(245,482 missing values generated)
+(45,534 real changes made)
+(39 observations deleted)
+(60 observations deleted)
+file analysis/temp/levport1969.dta saved
+(245,226 missing values generated)
+(245,226 missing values generated)
+(47,458 real changes made)
+(39 observations deleted)
+(56 observations deleted)
+file analysis/temp/levport1970.dta saved
+(244,827 missing values generated)
+(244,827 missing values generated)
+(49,498 real changes made)
+(39 observations deleted)
+(52 observations deleted)
+file analysis/temp/levport1971.dta saved
+(244,565 missing values generated)
+(244,565 missing values generated)
+(51,441 real changes made)
+(39 observations deleted)
+(48 observations deleted)
+file analysis/temp/levport1972.dta saved
+(244,358 missing values generated)
+(244,358 missing values generated)
+(52,549 real changes made)
+(39 observations deleted)
+(44 observations deleted)
+file analysis/temp/levport1973.dta saved
+(244,329 missing values generated)
+(244,329 missing values generated)
+(51,615 real changes made)
+(39 observations deleted)
+(40 observations deleted)
+file analysis/temp/levport1974.dta saved
+(244,346 missing values generated)
+(244,346 missing values generated)
+(49,900 real changes made)
+(39 observations deleted)
+(36 observations deleted)
+file analysis/temp/levport1975.dta saved
+(244,377 missing values generated)
+(244,377 missing values generated)
+(47,634 real changes made)
+(39 observations deleted)
+(32 observations deleted)
+file analysis/temp/levport1976.dta saved
+(244,420 missing values generated)
+(244,420 missing values generated)
+(45,532 real changes made)
+(39 observations deleted)
+(28 observations deleted)
+file analysis/temp/levport1977.dta saved
+(244,484 missing values generated)
+(244,484 missing values generated)
+(44,222 real changes made)
+(39 observations deleted)
+(24 observations deleted)
+file analysis/temp/levport1978.dta saved
+(244,323 missing values generated)
+(244,323 missing values generated)
+(43,996 real changes made)
+(39 observations deleted)
+(20 observations deleted)
+file analysis/temp/levport1979.dta saved
+(244,089 missing values generated)
+(244,089 missing values generated)
+(44,959 real changes made)
+(39 observations deleted)
+(16 observations deleted)
+file analysis/temp/levport1980.dta saved
+(243,965 missing values generated)
+(243,965 missing values generated)
+(44,256 real changes made)
+(39 observations deleted)
+(12 observations deleted)
+file analysis/temp/levport1981.dta saved
+(243,519 missing values generated)
+(243,519 missing values generated)
+(46,850 real changes made)
+(39 observations deleted)
+(8 observations deleted)
+file analysis/temp/levport1982.dta saved
+(243,305 missing values generated)
+(243,305 missing values generated)
+(47,603 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1983.dta saved
+(243,066 missing values generated)
+(243,066 missing values generated)
+(49,041 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1984.dta saved
+(243,043 missing values generated)
+(243,043 missing values generated)
+(47,708 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1985.dta saved
+(243,070 missing values generated)
+(243,070 missing values generated)
+(45,881 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1986.dta saved
+(242,958 missing values generated)
+(242,958 missing values generated)
+(45,332 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1987.dta saved
+(242,731 missing values generated)
+(242,731 missing values generated)
+(46,173 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1988.dta saved
+(242,977 missing values generated)
+(242,977 missing values generated)
+(42,684 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1989.dta saved
+(242,996 missing values generated)
+(242,996 missing values generated)
+(40,541 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1990.dta saved
+(243,041 missing values generated)
+(243,041 missing values generated)
+(37,900 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1991.dta saved
+(242,948 missing values generated)
+(242,948 missing values generated)
+(35,750 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1992.dta saved
+(242,651 missing values generated)
+(242,651 missing values generated)
+(34,303 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1993.dta saved
+(242,290 missing values generated)
+(242,290 missing values generated)
+(33,375 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1994.dta saved
+(242,009 missing values generated)
+(242,009 missing values generated)
+(31,658 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1995.dta saved
+(241,455 missing values generated)
+(241,455 missing values generated)
+(30,552 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1996.dta saved
+(240,974 missing values generated)
+(240,974 missing values generated)
+(28,536 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1997.dta saved
+(241,088 missing values generated)
+(241,088 missing values generated)
+(24,307 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1998.dta saved
+(241,274 missing values generated)
+(241,274 missing values generated)
+(19,838 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport1999.dta saved
+(241,364 missing values generated)
+(241,364 missing values generated)
+(15,464 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport2000.dta saved
+(241,413 missing values generated)
+(241,413 missing values generated)
+(10,912 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport2001.dta saved
+(241,681 missing values generated)
+(241,681 missing values generated)
+(5,469 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+file analysis/temp/levport2002.dta saved
+(241,967 missing values generated)
+(241,967 missing values generated)
+(0 real changes made)
+(39 observations deleted)
+(4 observations deleted)
+(note: dataset contains 0 observations)
+file analysis/temp/levport2003.dta saved
+
+. 
+. use "analysis/temp/levport1966", clear
+
+. 
+. foreach year of num 1967/2003 {
+  2.         merge 1:1 eventtime levport using analysis/temp/levport`year'
+  3.         drop _merge
+  4. }
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                                80  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             4
+        from master                         4  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                76  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             8
+        from master                         8  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                72  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            12
+        from master                        12  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                68  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            16
+        from master                        16  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                64  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            20
+        from master                        20  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                60  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            24
+        from master                        24  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                56  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            28
+        from master                        28  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                52  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            32
+        from master                        32  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                48  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            36
+        from master                        36  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                44  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            40
+        from master                        40  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                40  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            44
+        from master                        44  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                36  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            48
+        from master                        48  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                32  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            52
+        from master                        52  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                28  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            56
+        from master                        56  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                24  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            60
+        from master                        60  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                20  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            64
+        from master                        64  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                16  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            68
+        from master                        68  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                12  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            72
+        from master                        72  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                 8  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            76
+        from master                        76  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                 4  (_merge==3)
+    -----------------------------------------
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            80
+        from master                        80  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                                 0  (_merge==3)
+    -----------------------------------------
+
+. 
+. egen p = rowmean(nei*)
+
+. egen ste = rowmean(ste*)
+
+. gen pupper = p + ste
+
+. gen plower = p - ste
+
+. 
+. twoway  ///
+> (scatter p eventtime if levport == 0, con(l)) ///
+> (scatter p eventtime if levport == 1, con(l)) ///
+> (scatter p eventtime if levport == 2, con(l)) ///
+> (scatter p eventtime if levport == 3, con(l)), ///
+> legend(label(1 "Low") label(2 "Medium") label(3 "High") label(4 "Very High") 
+> rows(1) pos(12) size(vsmall)) ///
+> legend(order(1 2 3 4)) ///
+> xtitle("Event Time (Years)") ytitle("Net Equity Issue / Assets") ///
+> yscale(range(0 0.12)) ylabel(0(0.02)0.12) ///
+> xscale(range(1 20)) xlabel(1(1)20)
+
+. 
+. graph export "analysis/output/fig/fig3b.pdf", replace
+(file analysis/output/fig/fig3b.pdf written in PDF format)
+
+. 
 end of do-file
-r(2001);

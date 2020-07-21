@@ -7,7 +7,7 @@ use "build/output/data"
 save "analysis/input/data", replace
 
 destring gvkey sic, replace
-replace sic = sich
+replace sic = sich if sich < .
 duplicates drop gvkey fyear, force
 tsset gvkey fyear
 
