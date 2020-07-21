@@ -1,0 +1,33 @@
+\begin{tabular}{l*{7}{c}}
+\toprule
+ & \multicolumn{3}{c}{Pooled OLS} & \multicolumn{2}{c}{Firm Fixed Effects} & \multicolumn{2}{c}{GMM} \\ \cmidrule(lr){2-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+Variable & (a) & (b) & (c) & (d) & (e) & (f) & (g) \\ \midrule
+SOA         &        0.12&        0.13&        0.14&        0.34&        0.36&        0.20&        0.15\\
+            &     (48.14)&     (47.06)&     (46.62)&     (60.14)&     (59.10)&     (35.39)&     (14.19)\\
+\addlinespace
+Initial leverage&            &        0.21&        0.16&            &            &            &            \\
+            &            &     (15.71)&     (12.37)&            &            &            &            \\
+\addlinespace
+Log(Sales)  &            &            &        0.00&            &        0.02&            &     $-$0.08\\
+            &            &            &      (2.35)&            &      (5.36)&            &   ($-$6.41)\\
+\addlinespace
+Market-to-book&            &            &     $-$0.01&            &     $-$0.00&            &     $-$0.01\\
+            &            &            &   ($-$4.67)&            &   ($-$2.49)&            &   ($-$3.45)\\
+\addlinespace
+Profitability&            &            &     $-$0.24&            &     $-$0.11&            &        0.82\\
+            &            &            &   ($-$8.10)&            &   ($-$5.90)&            &     (10.39)\\
+\addlinespace
+Tangibility &            &            &        0.14&            &        0.10&            &     $-$0.60\\
+            &            &            &     (11.18)&            &      (5.68)&            &   ($-$7.70)\\
+\addlinespace
+Industry median lev.&            &            &        0.19&            &        0.21&            &     $-$1.47\\
+            &            &            &      (5.49)&            &      (5.66)&            &   ($-$7.60)\\
+\addlinespace
+Half-life   &        5.65&        5.11&        4.59&        1.67&        1.57&        3.13&        4.30\\
+            &     (45.24)&     (43.94)&     (43.19)&     (48.50)&     (47.02)&     (31.61)&     (13.07)\\
+\\
+Year fixed effects&          No&          No&         Yes&          No&         Yes&          No&         Yes\\
+$ R^{2}$    &       0.048&       0.051&       0.065&       0.228&       0.239&            &            \\
+N           &      90,511&      90,511&      90,511&      89,431&      89,431&      90,511&      79,997\\
+\bottomrule
+\end{tabular}
