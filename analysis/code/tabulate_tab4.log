@@ -2,22 +2,22 @@
   ___  ____  ____  ____  ____ (R)
  /__    /   ____/   /   ____/
 ___/   /   /___/   /   /___/   16.1   Copyright 1985-2019 StataCorp LLC
-  Statistics/Data Analysis            StataCorp
+  Statistics/Data analysis            StataCorp
                                       4905 Lakeway Drive
      Special Edition                  College Station, Texas 77845 USA
-                                      800-STATA-PC        http://www.stata.com
+                                      800-STATA-PC        https://www.stata.com
                                       979-696-4600        stata@stata.com
                                       979-696-4601 (fax)
 
-Single-user Stata license expires  5 Jul 2021:
-       Serial number:  401609700731
-         Licensed to:  Yongseok Kim
-                       Indiana University Bloomington
+Stata license: Single-user , expiring  5 Jul 2021
+Serial number: 401609700731
+  Licensed to: Yongseok Kim
+               Indiana University Bloomington
 
 Notes:
-      1.  Stata is running in batch mode.
-      2.  Unicode is supported; see help unicode_advice.
-      3.  Maximum number of variables is set to 5000; see help set_maxvar.
+      1. Stata is running in batch mode.
+      2. Unicode is supported; see help unicode_advice.
+      3. Maximum number of variables is set to 5,000; see help set_maxvar.
 
 . do tabulate_tab4.do 
 
@@ -40,7 +40,7 @@ Notes:
 . qui reg logsale fyear, nocons
 
 . predict logsaler, r
-(8,050 missing values generated)
+(9,101 missing values generated)
 
 . 
 . preserve
@@ -50,9 +50,9 @@ Notes:
 . tempfile initblev
 
 . save `initblev', replace
-(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000002 no
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000002 no
 > t found)
-file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000002 saved
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000002 saved
 
 . restore
 
@@ -64,9 +64,9 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000002 saved
 . tempfile initmlev
 
 . save `initmlev', replace
-(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000004 no
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000004 no
 > t found)
-file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000004 saved
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St65115.000004 saved
 
 . restore
 
@@ -76,7 +76,7 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000004 saved
     Result                           # of obs.
     -----------------------------------------
     not matched                             0
-    matched                           247,054  (_merge==3)
+    matched                           271,139  (_merge==3)
     -----------------------------------------
 
 . drop _merge
@@ -87,7 +87,7 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000004 saved
     Result                           # of obs.
     -----------------------------------------
     not matched                             0
-    matched                           247,054  (_merge==3)
+    matched                           271,139  (_merge==3)
     -----------------------------------------
 
 . drop _merge
@@ -104,111 +104,111 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St24040.000004 saved
   3.                 gen lag`j'_`v' = L`j'.`v'
   4.         }
   5. }
-(29,230 missing values generated)
-(49,474 missing values generated)
-(68,345 missing values generated)
-(85,699 missing values generated)
-(101,585 missing values generated)
-(115,756 missing values generated)
-(128,324 missing values generated)
-(139,788 missing values generated)
-(80,899 missing values generated)
-(96,936 missing values generated)
-(111,621 missing values generated)
-(124,961 missing values generated)
-(136,816 missing values generated)
-(147,432 missing values generated)
-(157,028 missing values generated)
-(165,736 missing values generated)
-(28,762 missing values generated)
-(49,178 missing values generated)
-(68,183 missing values generated)
-(85,696 missing values generated)
-(101,705 missing values generated)
-(115,949 missing values generated)
-(128,565 missing values generated)
-(140,080 missing values generated)
-(25,421 missing values generated)
-(46,459 missing values generated)
-(65,954 missing values generated)
-(83,875 missing values generated)
-(100,182 missing values generated)
-(114,682 missing values generated)
-(127,489 missing values generated)
-(139,196 missing values generated)
-(79,050 missing values generated)
-(95,163 missing values generated)
-(109,609 missing values generated)
-(122,448 missing values generated)
-(134,185 missing values generated)
-(144,774 missing values generated)
-(154,089 missing values generated)
-(162,459 missing values generated)
-(22,486 missing values generated)
-(43,882 missing values generated)
-(63,689 missing values generated)
-(81,870 missing values generated)
-(98,404 missing values generated)
-(113,091 missing values generated)
-(126,056 missing values generated)
-(137,883 missing values generated)
-(22,489 missing values generated)
-(43,885 missing values generated)
-(63,692 missing values generated)
-(81,871 missing values generated)
-(98,405 missing values generated)
-(113,091 missing values generated)
-(126,056 missing values generated)
-(137,883 missing values generated)
+(33,795 missing values generated)
+(57,005 missing values generated)
+(78,427 missing values generated)
+(97,910 missing values generated)
+(115,647 missing values generated)
+(131,416 missing values generated)
+(145,286 missing values generated)
+(157,940 missing values generated)
+(99,574 missing values generated)
+(116,576 missing values generated)
+(132,034 missing values generated)
+(146,030 missing values generated)
+(158,398 missing values generated)
+(169,448 missing values generated)
+(179,368 missing values generated)
+(188,343 missing values generated)
+(33,768 missing values generated)
+(57,101 missing values generated)
+(78,598 missing values generated)
+(98,187 missing values generated)
+(115,996 missing values generated)
+(131,786 missing values generated)
+(145,668 missing values generated)
+(158,350 missing values generated)
+(29,827 missing values generated)
+(53,882 missing values generated)
+(75,948 missing values generated)
+(96,011 missing values generated)
+(114,167 missing values generated)
+(130,255 missing values generated)
+(144,360 missing values generated)
+(157,247 missing values generated)
+(90,996 missing values generated)
+(108,898 missing values generated)
+(124,860 missing values generated)
+(138,957 missing values generated)
+(151,810 missing values generated)
+(163,345 missing values generated)
+(173,452 missing values generated)
+(182,522 missing values generated)
+(26,209 missing values generated)
+(50,713 missing values generated)
+(73,170 missing values generated)
+(93,561 missing values generated)
+(112,018 missing values generated)
+(128,369 missing values generated)
+(142,696 missing values generated)
+(155,765 missing values generated)
+(26,211 missing values generated)
+(50,715 missing values generated)
+(73,172 missing values generated)
+(93,561 missing values generated)
+(112,018 missing values generated)
+(128,368 missing values generated)
+(142,696 missing values generated)
+(155,765 missing values generated)
 
 . 
 . by gvkey: drop if _n == 1
-(22,076 observations deleted)
+(25,413 observations deleted)
 
 . 
 . foreach v of varlist lag*_* {
   2.         drop if missing(`v')
   3. }
-(7,154 observations deleted)
-(21,760 observations deleted)
-(19,838 observations deleted)
-(17,989 observations deleted)
-(16,285 observations deleted)
-(14,422 observations deleted)
-(12,671 observations deleted)
-(11,460 observations deleted)
-(15,653 observations deleted)
-(2,015 observations deleted)
-(1,940 observations deleted)
-(2,079 observations deleted)
-(2,142 observations deleted)
-(2,351 observations deleted)
-(2,886 observations deleted)
-(5,744 observations deleted)
-(477 observations deleted)
-(202 observations deleted)
-(190 observations deleted)
-(177 observations deleted)
-(178 observations deleted)
-(188 observations deleted)
-(222 observations deleted)
-(275 observations deleted)
-(290 observations deleted)
-(125 observations deleted)
-(102 observations deleted)
+(8,382 observations deleted)
+(24,856 observations deleted)
+(22,487 observations deleted)
+(20,189 observations deleted)
+(18,188 observations deleted)
+(16,059 observations deleted)
+(14,025 observations deleted)
+(12,675 observations deleted)
+(19,283 observations deleted)
+(2,009 observations deleted)
+(1,942 observations deleted)
+(2,139 observations deleted)
+(2,219 observations deleted)
+(2,441 observations deleted)
+(2,974 observations deleted)
+(5,861 observations deleted)
+(518 observations deleted)
+(212 observations deleted)
+(196 observations deleted)
+(182 observations deleted)
+(181 observations deleted)
+(189 observations deleted)
+(225 observations deleted)
+(280 observations deleted)
+(300 observations deleted)
+(127 observations deleted)
+(103 observations deleted)
+(98 observations deleted)
 (96 observations deleted)
-(97 observations deleted)
-(101 observations deleted)
-(107 observations deleted)
-(110 observations deleted)
-(203 observations deleted)
-(92 observations deleted)
-(111 observations deleted)
-(133 observations deleted)
-(190 observations deleted)
-(1,537 observations deleted)
-(3,420 observations deleted)
-(3,433 observations deleted)
+(100 observations deleted)
+(105 observations deleted)
+(109 observations deleted)
+(24 observations deleted)
+(5 observations deleted)
+(6 observations deleted)
+(8 observations deleted)
+(16 observations deleted)
+(1,480 observations deleted)
+(3,407 observations deleted)
+(3,423 observations deleted)
 (0 observations deleted)
 (0 observations deleted)
 (0 observations deleted)
@@ -422,7 +422,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.38"
+                e(r2_) : "0.39"
 
 . estadd local yearfixed "Yes"
 

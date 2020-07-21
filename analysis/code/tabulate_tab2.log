@@ -2,22 +2,22 @@
   ___  ____  ____  ____  ____ (R)
  /__    /   ____/   /   ____/
 ___/   /   /___/   /   /___/   16.1   Copyright 1985-2019 StataCorp LLC
-  Statistics/Data Analysis            StataCorp
+  Statistics/Data analysis            StataCorp
                                       4905 Lakeway Drive
      Special Edition                  College Station, Texas 77845 USA
-                                      800-STATA-PC        http://www.stata.com
+                                      800-STATA-PC        https://www.stata.com
                                       979-696-4600        stata@stata.com
                                       979-696-4601 (fax)
 
-Single-user Stata license expires  5 Jul 2021:
-       Serial number:  401609700731
-         Licensed to:  Yongseok Kim
-                       Indiana University Bloomington
+Stata license: Single-user , expiring  5 Jul 2021
+Serial number: 401609700731
+  Licensed to: Yongseok Kim
+               Indiana University Bloomington
 
 Notes:
-      1.  Stata is running in batch mode.
-      2.  Unicode is supported; see help unicode_advice.
-      3.  Maximum number of variables is set to 5000; see help set_maxvar.
+      1. Stata is running in batch mode.
+      2. Unicode is supported; see help unicode_advice.
+      3. Maximum number of variables is set to 5,000; see help set_maxvar.
 
 . do tabulate_tab2.do 
 
@@ -44,9 +44,9 @@ Notes:
 . tempfile initblev
 
 . save `initblev', replace
-(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000002 no
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St64999.000002 no
 > t found)
-file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000002 saved
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St64999.000002 saved
 
 . restore
 
@@ -58,9 +58,9 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000002 saved
 . tempfile initmlev
 
 . save `initmlev', replace
-(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000004 no
+(note: file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St64999.000004 no
 > t found)
-file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000004 saved
+file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St64999.000004 saved
 
 . restore
 
@@ -70,7 +70,7 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000004 saved
     Result                           # of obs.
     -----------------------------------------
     not matched                             0
-    matched                           247,054  (_merge==3)
+    matched                           271,139  (_merge==3)
     -----------------------------------------
 
 . drop _merge
@@ -81,7 +81,7 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000004 saved
     Result                           # of obs.
     -----------------------------------------
     not matched                             0
-    matched                           247,054  (_merge==3)
+    matched                           271,139  (_merge==3)
     -----------------------------------------
 
 . drop _merge
@@ -96,27 +96,27 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000004 saved
 . foreach v in logsale mtb prof tang cfvol indblev divpayer {
   2.         gen lag1_`v' = L.`v'
   3. }
-(29,230 missing values generated)
-(80,899 missing values generated)
-(28,762 missing values generated)
-(25,421 missing values generated)
-(79,050 missing values generated)
-(22,486 missing values generated)
-(22,489 missing values generated)
+(33,795 missing values generated)
+(99,574 missing values generated)
+(33,768 missing values generated)
+(29,827 missing values generated)
+(90,996 missing values generated)
+(26,209 missing values generated)
+(26,211 missing values generated)
 
 . 
 . by gvkey: drop if _n == 1
-(22,076 observations deleted)
+(25,413 observations deleted)
 
 . 
 . foreach v of varlist lag1_* {
   2.         drop if missing(`v')
   3. }
-(7,154 observations deleted)
-(54,720 observations deleted)
-(2,128 observations deleted)
-(1,141 observations deleted)
-(26,595 observations deleted)
+(8,382 observations deleted)
+(68,898 observations deleted)
+(2,366 observations deleted)
+(1,235 observations deleted)
+(26,907 observations deleted)
 (0 observations deleted)
 (2 observations deleted)
 
@@ -124,7 +124,7 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000004 saved
 . foreach v of varlist initblev initmlev lag1_* {
   2.         egen `v'_std = std(`v')
   3. }
-(6 missing values generated)
+(7 missing values generated)
 
 . 
 . global control1 "lag1_logsale_std lag1_mtb_std lag1_prof_std lag1_tang_std"
@@ -159,7 +159,7 @@ file /var/folders/5x/ys8vrl6n4yvbdxjwvb5k0nf00000gn/T//St23900.000004 saved
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.13"
+                e(r2_) : "0.15"
 
 . estadd local yearfixed "No"
 
@@ -193,7 +193,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.21"
+                e(r2_) : "0.22"
 
 . estadd local yearfixed "Yes"
 
@@ -261,7 +261,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.20"
+                e(r2_) : "0.22"
 
 . estadd local yearfixed "No"
 
@@ -295,7 +295,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.33"
+                e(r2_) : "0.34"
 
 . estadd local yearfixed "Yes"
 
@@ -354,7 +354,7 @@ added macro:
 . 
 . /* Panel B */
 . keep if survivor == 1
-(59,463 observations deleted)
+(62,375 observations deleted)
 
 . 
 . * Column 1
@@ -383,7 +383,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.16"
+                e(r2_) : "0.17"
 
 . estadd local yearfixed "No"
 
@@ -417,7 +417,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.24"
+                e(r2_) : "0.25"
 
 . estadd local yearfixed "Yes"
 
@@ -451,7 +451,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.27"
+                e(r2_) : "0.28"
 
 . estadd local yearfixed "Yes"
 
@@ -485,7 +485,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.18"
+                e(r2_) : "0.19"
 
 . estadd local yearfixed "No"
 
@@ -519,7 +519,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.36"
+                e(r2_) : "0.37"
 
 . estadd local yearfixed "Yes"
 
@@ -553,7 +553,7 @@ added macro:
 . estadd local r2_ "`r2_'"
 
 added macro:
-                e(r2_) : "0.40"
+                e(r2_) : "0.39"
 
 . estadd local yearfixed "Yes"
 
